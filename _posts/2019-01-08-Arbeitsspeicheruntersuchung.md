@@ -126,6 +126,10 @@ Somit konnte kein valider Prozess herauskristallisiert werden.
 Es gibt noch die Möglichkeit um die Priorität zu überprüfen. Denn der legitime Prozess sollte dank seinem SYSTEM-Level auch entsprechend höhere Priorität besitzen. Tatsächlich besitzen bei Windows "normale" Anwendungen max. ein Prioritätlevel von 8, wohingegen SYSTEM-Anwendungen ein Level von 9 besitzen.
 {% include rekall_getpriority.html %}
 
+Wie bei einer SQL Abfrage wird mit __SELECT__ bestimmt welche Spalten angefragt werden. In unserem Fall __name__, __die ID__ und die __Prioritätlevel__. Mit __FROM__ wird die Informationsquelle bestimmt, in dem Fall die Werte von pslist().
+pslist() ist ähnlich dem pstree().
+Weiter wird die Ausgabe von pslist() durch __WHERE__ gefiltert, nur Daten die als name "lsass.exe" tragen werden berücksichtigt.
+
 |pid|name|BasePriority|
 |---|----|------------|
 |680|lsass.exe|9|
