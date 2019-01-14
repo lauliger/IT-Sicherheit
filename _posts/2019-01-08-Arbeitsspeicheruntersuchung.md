@@ -123,7 +123,14 @@ Mittels Rekall lassen sich die Rechte der einzelnen Prozesse aufzeigen:
 
 An dieser Ausgabe ist zu erkennen, dass alle 3 Verdächtigen die gleiche Berechtigung besitzen.
 Somit konnte kein valider Prozess herauskristallisiert werden.
-Es gibt noch die Möglichkeit um die Priorität zu überprüfen.
+Es gibt noch die Möglichkeit um die Priorität zu überprüfen. Denn der legitime Prozess sollte dank seinem SYSTEM-Level auch entsprechend höhere Priorität besitzen. Tatsächlich besitzen bei Windows "normale" Anwendungen max. ein Prioritätlevel von 8, wohingegen SYSTEM-Anwendungen ein Level von 9 besitzen.
+{% include rekall_getpriority.html %}
+
+|pid|name|BasePriority|
+|---|----|------------|
+|680|lsass.exe|9|
+|868|lsass.exe|8|
+|1928|lsass.exe|8|
 
 ### Dll Anbindung
 
