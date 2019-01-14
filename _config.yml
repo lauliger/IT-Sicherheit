@@ -1,14 +1,14 @@
 # Site
-title:              Moon
-bio:                'Minimal, one column jekyll theme.'
-description:        "Moon is a minimal, one column jekyll theme for your blog."
-reading_time:       true
+title:              IT-Sicherheit
+bio:                'Anleitungen und Scripte rund um IT-Sicherheit.'
+description:        "Die IT-Sicherheit ist mittlerweile ein riesiges und anerkanntes Themengebiet in der IT-Landschaft."
+reading_time:       false
 words_per_minute:   200
 logo:               'assets/img/logo.png'
 background:         'assets/img/placeholder-big.jpg'
 tiled_bg:           false   # Set this true if you want to tile your background image, otherwise it will be covered
-locale:             en_US
-url:                https://taylantatli.github.io/Moon
+locale:             de_CH
+url:                na
 
 # Jekyll
 permalink:          /:title/
