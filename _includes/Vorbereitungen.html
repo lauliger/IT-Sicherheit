@@ -1,0 +1,19 @@
+
+<details>
+<summary>Virtuelle Umgebung & Rekall installieren</summary>
+<ol>
+  <li><details><summary><code>pacman -S virtualenv</code></summary>
+<p>Bei Debian: apt install virtualenv-python</p>
+</details>
+</li>
+<li><details>
+<summary>virtualenv /pathToEnv</summary>
+<p>Der Pfad ist frei wählbar!</p></details></li>
+<li>source /pathToEnv/bin/activate</li>
+<li><details><summary>pip install rekall</summary><p>Es könnten Probleme beim Version von Wheel, pip oder Setuptools vorkommen.</p>
+<p>pip install --upgrade pip wheel setuptools</p></details></li>
+<li><details><summary>rekall --help</summary><p>Sollte ein Fehler wegen der efilter Version aufkommen:</p>
+<p>pip install --upgrade rekall-efilter</p></details></li>
+</ol>
+</details>
+<p></p>
