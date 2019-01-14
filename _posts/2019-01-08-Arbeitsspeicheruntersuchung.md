@@ -41,6 +41,12 @@ Um überhaupt eine Vorstellung der Lage zu bekommen, beginnen wir mit der Einsic
 Mit dem Befehl __pstree__ können alle Prozesse angezeigt werden, die zur Laufzeit, als das Abbild erstellt wurde, aktiv waren.
 {% include Rekall_Pstree.html %}
 
+| Priority apples | Second priority | Third priority |
+|-------|--------|---------|
+| ambrosia | gala | red delicious |
+| pink lady | jazz | macintosh |
+| honeycrisp | granny smith | fuji |
+
 ### Verdächtige Prozesse
 
 #### WindowsXP Standardprozesse
