@@ -4,13 +4,12 @@
 <ol>
   <li><summary><code>pacman -S python-virtualenv</code></summary>
 </li>
-<li><details>
-    <summary><code>virtualenv -p python2 /tmp/MyEnv</code></summary>
+<li><details><summary><code>virtualenv -p python2 /tmp/MyEnv</code></summary>
 <p>Ausgabe bei Erfolg:</p>
 <textarea style="resize:none" rows="4" cols="55" readonly>Running virtualenv with interpreter /usr/bin/python2
 New python executable in /tmp/MyEnv/bin/python2
 Also creating executable in /tmp/MyEnv/bin/python
-Installing setuptools, pip, wheel...done.</textarea>
+    Installing setuptools, pip, wheel...done.</textarea></details>
     <li><code>source /tmp/MyEnv<b>/bin/activate</b></code></li>
     <li><details><summary><code>pip install rekall</code></summary><p>Es könnten Probleme beim Version von Wheel, pip oder Setuptools vorkommen.</p>
         <p><code>pip install --upgrade pip wheel setuptools</code></p></details></li>
