@@ -87,14 +87,24 @@ Hier könnte es hilfreich sein das Gedächnis aufzufrischen oder für welche die
 Von der Uni-Regensburg, ist online eine dokumentierte Liste über die Standardprozesse von WinXP zu finden.
 {% include winxplist.html %}
 
-### Rechtestufen
+### Optionen evaluieren
 
 Unter den 3 verdächtigen Prozessen, befinden sich 2 mögliche Schädlinge und einer, der wohl das Vorbild der Verschleierungsversuche ist, der eine valide Windows Standardprozess darstellt.
 Doch wie wollen wir das nun herausfinde? Um den 2 gefälschten Prozessen auf die Spur zu kommen, haben wir ein breites Spektrum an Ansätzen und Möglichkeiten.
 Auch hier, um einen Anhaltspunkt für das weitere Vorgehen zu finden, brauchen wir mehr Informationen.
 Eine einfache __Google-Suche__ mit den Worten "lsass.exe windows xp" könnte uns interessante Informationen aufzeigen.
 {% include prozessinformationen.html %}
-*
+
+Daraus können wir folgende Fakten ziehen:
+* lsass.exe liegt im Ordner "C:\Windows\System32"
+* lsass.exe steht auf SYSTEM level und hat somit sehr hohe Rechte
+* lsass.exe ist ein lokaler Sicherheit-Authentifizierungsserver Funktionen die bei einem Trojaner typisch sind (Kontrolle von Fenstern oder das Bewegen der Maus, oder Tastaturschläge) gehören nicht zu seinen Funktionsliste
+
+### Rechtestufen
+
+Da der valide Prozess "lsass.exe" SYSTEM-Rechte besitzt, müsste der valide Prozess grösser-gleich __(>=)__ Rechte zu den 2 Prozessen haben. Wenn wir Glück haben, sollte bei dieser Untersuchung ein Prozess höhere Rechte haben als die beiden anderen. So wissen wir welcher der valide Prozess ist.
+Mittels Rekall lassen sich die Rechte der einzelnen Prozesse aufzeigen:
+
 
 
 ### Dll Anbindung
