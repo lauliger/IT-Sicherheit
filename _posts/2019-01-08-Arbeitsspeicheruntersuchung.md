@@ -42,3 +42,22 @@ Um überhaupt eine Vorstellung der Lage zu bekommen, beginnen wir mit der Einsic
 Mit dem Befehl __pstree__ können alle Prozesse angezeigt werden, die zur Laufzeit, als das Abbild erstellt wurde, aktiv waren.
 {% include Rekall_Pstree.html %}
 
+### Verdächtige Prozesse
+
+#### WindowsXP Standardprozesse
+
+### Rechtestufen
+
+### Dll Anbindung
+
+### Scannen von Prozessen
+
+### Prozesse Extrahieren
+
+### Funktionszugriffe einsehen
+
+### Assembly-Code analysieren
+
+### Fazit
+
+### Scripte
