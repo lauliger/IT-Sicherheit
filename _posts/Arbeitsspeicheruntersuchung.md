@@ -3,7 +3,7 @@ layout: post
 title: "Arbeitsspeicheruntersuchung"
 date: 2019-01-08
 excerpt: "Erste Schritte zur Untersuchung von Arbeitsspeicherabbilder."
-tags: [Memory Dumb, Rekall, Dumb]
+tags: []
 comments: false
 ---
 
