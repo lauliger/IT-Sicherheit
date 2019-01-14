@@ -77,7 +77,15 @@ Mit dem Befehl __pstree__ können alle Prozesse angezeigt werden, die zur Laufze
 
 ### Verdächtige Prozesse
 
+Um aus der pstree Ausgabe vernünftig Indizien zu sammeln, benötigt man Erfahrung und Wissen über die Betriebssysteme die man untersucht. Was hier schon für viele erfahrene XP nutzer ins Auge sticht: "lsass.exe" kommt 3x vor obwohl dieser Prozess eigentlich nur einmal vorkommen sollte.
+Diese Beobachtung zu grunde liegend, nehmen wir die Prozesse 680, 868 und 1928 genauer unter die Lupe.
+Zurzeit sind alle 3 Prozesse gleichviel verdächtigt.
+
 #### WindowsXP Standardprozesse
+
+Hier könnte es hilfreich sein das Gedächnis aufzufrischen oder für welche die nie grossartig an einem XP Rechner gesessen haben, sich eine Liste von den Standartprozessen zur seite zu legen.
+Von der Uni-Regensburg, ist online eine dokumentierte Liste über die Standardprozesse von WinXP zu finden.
+{% include winxplist.html %}
 
 ### Rechtestufen
 
