@@ -89,6 +89,14 @@ Von der Uni-Regensburg, ist online eine dokumentierte Liste über die Standardpr
 
 ### Rechtestufen
 
+Unter den 3 verdächtigen Prozessen, befinden sich 2 mögliche Schädlinge und einer, der wohl das Vorbild der Verschleierungsversuche ist, der eine valide Windows Standardprozess darstellt.
+Doch wie wollen wir das nun herausfinde? Um den 2 gefälschten Prozessen auf die Spur zu kommen, haben wir ein breites Spektrum an Ansätzen und Möglichkeiten.
+Auch hier, um einen Anhaltspunkt für das weitere Vorgehen zu finden, brauchen wir mehr Informationen.
+Eine einfache __Google-Suche__ mit den Worten "lsass.exe windows xp" könnte uns interessante Informationen aufzeigen.
+{% include prozessinformationen.html %}
+*
+
+
 ### Dll Anbindung
 
 ### Scannen von Prozessen
