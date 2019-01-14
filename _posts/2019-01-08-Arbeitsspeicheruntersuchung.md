@@ -104,7 +104,7 @@ Daraus können wir folgende Fakten ziehen:
 
 Da der valide Prozess "lsass.exe" SYSTEM-Rechte besitzt, müsste der valide Prozess grösser-gleich __(>=)__ Rechte zu den 2 Prozessen haben. Wenn wir Glück haben, sollte bei dieser Untersuchung ein Prozess höhere Rechte haben als die beiden anderen. So wissen wir welcher der valide Prozess ist.
 Mittels Rekall lassen sich die Rechte der einzelnen Prozesse aufzeigen:
-
+{% include rekall_tokens.html %}
 
 
 ### Dll Anbindung
