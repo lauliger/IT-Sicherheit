@@ -3,8 +3,8 @@ layout: post
 title: "Arbeitsspeicheruntersuchung"
 date: 2019-01-08
 excerpt: "Erste Schritte zur Untersuchung von Arbeitsspeicherabbilder."
-tags: []
-comments: false
+tags: [sample post, code, highlighting]
+comments: true
 ---
 
 ## Was ist *Memory Forensik*?
