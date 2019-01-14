@@ -106,6 +106,24 @@ Da der valide Prozess "lsass.exe" SYSTEM-Rechte besitzt, müsste der valide Proz
 Mittels Rekall lassen sich die Rechte der einzelnen Prozesse aufzeigen:
 {% include rekall_tokens.html %}
 
+|Process|Sid|Comment|
+|-------|---|-------|
+|0x81e70020 lsass.exe|680 S-1-5-18|Local System|
+|0x81e70020 lsass.exe|680 S-1-5-32-544|Administrators|
+|0x81e70020 lsass.exe|680 S-1-1-0|Everyone|
+|0x81e70020 lsass.exe|680 S-1-5-11|Authenticated Users|
+|0x81c498c8 lsass.exe|868 S-1-5-18|Local System|
+|0x81c498c8 lsass.exe|868 S-1-5-32-544|Administrators|
+|0x81c498c8 lsass.exe|868 S-1-1-0|Everyone|
+|0x81c498c8 lsass.exe|868 S-1-5-11|Authenticated Users|
+|0x81c47c00 lsass.exe|1928 S-1-5-18|Local System|
+|0x81c47c00 lsass.exe|1928 S-1-5-32-544|Administrators|
+|0x81c47c00 lsass.exe|1928 S-1-1-0|Everyone|
+|0x81c47c00 lsass.exe|1928 S-1-5-11|Authenticated Users|
+
+An dieser Ausgabe ist zu erkennen, dass alle 3 Verdächtigen die gleiche Berechtigung besitzen.
+Somit konnte kein valider Prozess herauskristallisiert werden.
+Es gibt noch die Möglichkeit um die Priorität zu überprüfen.
 
 ### Dll Anbindung
 
