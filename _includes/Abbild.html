@@ -1,34 +1,42 @@
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 .btn {
-  background-color: DodgerBlue;
+  background-color: black;
   border: none;
   color: white;
-  padding: 12px 16px;
+  padding: 12px 12px;
   font-size: 16px;
   cursor: pointer;
 }
-
 /* Darker background on mouse-over */
 .btn:hover {
-  background-color: RoyalBlue;
+  background-color: gray;
 }
 </style>
 
+<script>
+function cpMdHash() {
+  var copyText = document.getElementById('md5Txt').select();
+  document.execCommand("copy");
+}
+</script>
+<script>
+function cpCmd(){
+var cmdText = document.getElementById('cmdTxt').select();
+document.execCommand('copy');
+}
+</script>
 
 <details>
 <summary>Abbild mit Stuxnet</summary>
 <a href="http://www.jonrajewski.com/data/Malware/stuxnet.vmem.zip">   Abbild als Zip herunterladen</a>
     <p>Das Abbild stellt einen infizierten WindowsXP Rechner dar. 
         Bitte überprüfe ob es sich wirklich beim heruntergeladenen File um das angegebene Abbild handelt! </p>
-    <p>MD5Hash: 8f630be089e791cc23571ce51c73df0c   </p><button onclick="myFunction()">Copy<i class="fa fa-home"></i></button>
-        <p>Linux: <code>echo "8f630be089e791cc23571ce51c73df0c" stuxnet.vmem.zip | md5sum -c -</code></p>
+        
+    <p>MD5Hash:</p><textarea id="md5Txt" readonly rows="2" cols="35">8f630be089e791cc23571ce51c73df0c</textarea>    <button class="btn" onclick="cpMdHash()"><i class="fa fa-clipboard"></i></button><p>Befehl:</p>
+    
+    <textarea id="cmdTxt" readonly rows="2" cols="65">echo "8f630be089e791cc23571ce51c73df0c" stuxnet.vmem.zip | md5sum -c -</textarea>
+    <button class="btn" onclick="cpCmd()"><i class="fa fa-clipboard"></i></button>
 </details>
 <p></p>
-<script>
-function myFunction() {
-  var copyText = "8f630be089e791cc23571ce51c73df0c";
-  copyText.select();
-  document.execCommand("copy");
-}
-</script>
