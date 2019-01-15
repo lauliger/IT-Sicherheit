@@ -337,7 +337,7 @@ Ein Scan mit der Funktion "malfind" könnte den Verdacht bestätigen. Denn malfi
 
 Die Ausgabe ist extrem Lange und ich bin zurzeit noch nicht in der Lage alles dazu zu erklären. Ein wichtiger Punkt ist die "MZ" Marke, da es sich dabei um ausführbaren Code handelt.
 
-<img style="float: right;" src="../assets/img/MZausgabe.png">
+<img style="float: right;" src="../assets/img/mz.png">
 
 
 ### Prozesse Extrahieren
