@@ -451,6 +451,6 @@ if __name__=="__main__":
     print("Start")
     cmpStrings()
 {% endhighlight %}
-<a href="https://github.com/lauliger/IT-Sicherheit/blob/master/script.py" download>
+<a href="https://raw.githubusercontent.com/lauliger/IT-Sicherheit/master/script.py" download>
   <img src="https://image.flaticon.com/icons/svg/28/28884.svg" alt="Python-Script" width="20" height="20">
 </a>
