@@ -385,8 +385,8 @@ Daher endet dieser Blog fürs erste an diesem Punkt.
 
 ### Scripte
 
-<coder class="python">
-    from sys import argv
+{% highlight python %}
+from sys import argv
 import os
 
 class cl:
@@ -430,6 +430,4 @@ def buildList(myString):
 if __name__=="__main__":
     print("Start")
     cmpStrings()
-
-    
-    </code>
+{% endhighlight %}
