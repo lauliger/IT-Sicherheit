@@ -136,7 +136,22 @@ Weiter wird die Ausgabe von pslist() durch __WHERE__ gefiltert, nur Daten die al
 |868|lsass.exe|8|
 |1928|lsass.exe|8|
 
+Durch diese Ausgabe, sehen wir dass die Priorität von Prozess 680 höher liegt, als die der anderen beiden.
+Wir können bereits jetzt davon reden, dass es sich beim Prozess 680 um das valide lsass.exe handelt.
+Dafür sprechen 2 Punkte:
+* Das erstelldatum dass ein Jahr vor den anderen 2 Prozessen liegt und mit anderen legitimen SYSTEM-Prozessen gleich ligt.
+* Die höhere Priorität die durch den SYSTEM-Level kommt.
+
+Es liegt nun auf der Hand welches der 3 Prozesse valid ist und welche 2 verdächtigt werden Schadcode zu beinhalten.
+Dennoch können wir weiter die Prozesse untersuchen. Evtl können wir so den Handlungsradius bestimmen.
+Wichtig für die Handlungsmöglichkeiten eines Prozesses, sind die Funktionen die es verwendet/besitzt.
+Viele Funktionen finden sich in DLL-Dateien. Das sind ganze Bibliotheken von Funktionen.
+Auch die Framework-Funktionen die Windowseigene Alogrithmen beinhalten, stellen diese über DLLs bereit.
+Daher ist es für einen Forensiker interessant zu wissen auf welche DLLs ein Prozess zugreift, dadurch lässt sich der Handlungsspielraum eingrenzen.
+
 ### Dll Anbindung
+
+
 
 ### Scannen von Prozessen
 
