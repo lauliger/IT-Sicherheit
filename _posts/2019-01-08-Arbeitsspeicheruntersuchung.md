@@ -342,6 +342,10 @@ Die Ausgabe ist extrem Lange und ich bin zurzeit noch nicht in der Lage alles da
 
 ### Prozesse Extrahieren
 
+Die Prozesse können zur weiteren Untersuchungen (Disassembly) aus dem Abbild extrahiert werden.
+Dazu:
+<pre><code>[1] <font color="#2e8b57">stuxnet.vmem</font> <font color="gray">23:55:00</font>> <font color="black">procdump[</font>[<font color="#551A8B">680,868,1928</font>],dump_dir<font color="red">=</font><font color="#FFA54F">"./out"</font></code></pre>
+
 ### Funktionszugriffe einsehen
 
 ### Assembly-Code analysieren
