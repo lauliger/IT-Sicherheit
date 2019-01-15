@@ -371,8 +371,21 @@ executable.lsass.exe_868.exe: ZwQueryAttributesFile
 executable.lsass.exe_868.exe: ZwQuerySection
 </code></pre>
 
+Prozess 680 fehlt in der Ausgabe. Ein Authentifizierungsserver würde diese Funktionen nicht benötigen.
+
 ### Assembly-Code analysieren
+
+Ab hier bräuchte man erweiterte Assembly-Wissen, über die ich zurzeit nicht verfüge.
+Daher endet dieser Blog fürs erste an diesem Punkt.
+
 
 ### Fazit
 
+
+
 ### Scripte
+
+<coder class="python">
+    
+    
+    </code>
