@@ -199,6 +199,11 @@ Service Pack 3
 Der legitime Prozess hat viel mehr DLLs eingebunden als die 2 ilegitimen Prozesse.
 Das überrascht nicht, da ein Programmierer von Schadcode, zwar Funktionen von der Framework benötigt, aber nicht alle.
 Wozu den Schadcode unnötig aufblähen?
+Natürlich ist das nur eine Interpretation und kann höchstens als Indiz und nicht als Beweis gewertet werden.
+Was wir wissen müssen, DLL-Anbindungen können absichtlich verschleiert werden.
+Ein Weg dies zu tun ist das unlinken von DLLs aus der PEB. {% include PEB.html %}
+
+mit "ldrmodules" untersuchen wir die ldr Einträge, dabei handelt es sich um eingetragene Pointer die Informationen über geladene DLLs beinhalten. Dort wird in der Antiforensik angesetzt um DLLs vor einer Untersuchung zu verstecken.
 
 ### Scannen von Prozessen
 
