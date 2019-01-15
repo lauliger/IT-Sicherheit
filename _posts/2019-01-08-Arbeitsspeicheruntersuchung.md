@@ -451,4 +451,4 @@ if __name__=="__main__":
     print("Start")
     cmpStrings()
 {% endhighlight %}
-<a href="https://raw.githubusercontent.com/lauliger/IT-Sicherheit/master/script.py" download>script.py herunterladen</a>
+<a href="https://raw.githubusercontent.com/lauliger/IT-Sicherheit/master/script.py" download="download">script.py herunterladen</a>
