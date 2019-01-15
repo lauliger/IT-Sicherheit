@@ -203,7 +203,9 @@ Natürlich ist das nur eine Interpretation und kann höchstens als Indiz und nic
 Was wir wissen müssen, DLL-Anbindungen können absichtlich verschleiert werden.
 Ein Weg dies zu tun ist das unlinken von DLLs aus der PEB. {% include PEB.html %}
 
-mit "ldrmodules" untersuchen wir die ldr Einträge, dabei handelt es sich um eingetragene Pointer die Informationen über geladene DLLs beinhalten. Dort wird in der Antiforensik angesetzt um DLLs vor einer Untersuchung zu verstecken.
+Mit "ldrmodules" untersuchen wir die ldr Einträge, dabei handelt es sich um eingetragene Pointer die Informationen über geladene DLLs beinhalten. Dort wird in der Antiforensik angesetzt um DLLs vor einer Untersuchung zu verstecken.
+
+{% include rekall_ldrmodules.html %}
 
 ### Scannen von Prozessen
 
