@@ -385,6 +385,20 @@ Daher endet dieser Blog fürs erste an diesem Punkt.
 
 ### Scripte
 
+Hier noch ein kleiner Script der die Ausgaben von Strings vergleicht.
+(Es wird noch ein Script folgen für das suchen von Verdächtigen Prozessen)
+
+Funktionsweise:
+Es handelt sich hier um ein Python-Script. Als Argumente werden 2 Dateien angegeben.
+Das erste stellt das Original dar und das zweite wird mit dem ersten verglichen.
+
+{% highlight bash %}
+python script.py executable.lsass.exe_680.exe executable.lsass.exe_868.exe
+{% endhighlight %}
+__Ausgabe:__
+
+<img style="float: right;" src="../assets/img/scriptausgabe.png"> 
+
 {% highlight python %}
 from sys import argv
 import os
