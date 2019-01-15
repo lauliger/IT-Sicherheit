@@ -400,7 +400,10 @@ __Ausgabe:__
 
 <img style="float: right;" src="../assets/img/scriptausgabe.png"> 
 
-<p></p>
+Die Zeilen mit [+] bedeuten dass diese Strings in beiden Dateien vorkommen.
+Die mit [!] hingegen, dass sie bei der ersten Datei nicht vorkommen.
+
+Quellcode
 
 {% highlight python %}
 from sys import argv
