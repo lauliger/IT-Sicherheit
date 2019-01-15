@@ -344,9 +344,16 @@ Die Ausgabe ist extrem Lange und ich bin zurzeit noch nicht in der Lage alles da
 
 Die Prozesse können zur weiteren Untersuchungen (Disassembly) aus dem Abbild extrahiert werden.
 Dazu:
-<pre><code>[1] <font color="#2e8b57">stuxnet.vmem</font> <font color="gray">23:55:00</font>> <font color="black">procdump[</font>[<font color="#551A8B">680,868,1928</font>],dump_dir<font color="red">=</font><font color="#FFA54F">"./out"</font></code></pre>
+<pre><code>[1] <font color="#2e8b57">stuxnet.vmem</font> <font color="gray">23:55:00</font>> <font color="black">procdump[</font><font color="#551A8B">680,868,1928</font>],dump_dir<font color="red">=</font><font color="#FFA54F">"./out"</font></code></pre>
 
 ### Funktionszugriffe einsehen
+
+Die nun Extrahierten .exe Dateien, können mit Tools wie __strings__ untersucht werden.
+Wie bereits erwähnt sollten die schädlichen 2 Prozesse, Funktionen aufrufen die atypisch für Authentifizierungsserver sind.
+Dafür aber indizien aufgeben für einen Schädling. Bsonders eine RAT *(Remote Access Tool)* wird vermutbar sein.
+Da diese Art von Viren viel Kontrolle benötigen, darunter Kontrolle über Fenster, Tasteneingaben, Mausführung ect.
+
+<code>strings --print-file-name --data --encoding=s executable.lsass.exe*  | grep --perl-regexp <font color="#FFA54F">ZwMapViewOfSection|ZwCreateSection|ZwOpenFile|ZwClose|ZwQueryAttributesFile|ZwQuerySection"</font></code>
 
 ### Assembly-Code analysieren
 
