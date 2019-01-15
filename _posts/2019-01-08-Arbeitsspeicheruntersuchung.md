@@ -273,7 +273,7 @@ __0x81e70020 lsass.exe   680__
 
 
 __0x81c498c8 lsass.exe   868__
-<details>
+
 |base|in_load|in_init|in_mem|mapped|
 |----|-------|-------|------|------|
 |0x80000|__False__|__False__|__False__|
@@ -285,7 +285,7 @@ __0x81c498c8 lsass.exe   868__
 |0x1000000|*True*|__False__|*True*|__???__|
 |0x77f10000|*True*|*True*|*True*|\WINDOWS\system32\gdi32.dll|
 |0x77dd0000|*True*|*True*|*True*|\WINDOWS\system32\advapi32.dll|
-</details>
+
 
 __0x81c47c00 lsass.exe  1928__
 
@@ -335,6 +335,9 @@ Hier noch ein Bild wie die "unlinking DLLs" sich vorgestellt werden kann:
 Ein Scan mit der Funktion "malfind" könnte den Verdacht bestätigen. Denn malfind untersucht Prozesse nach eingeschleusten Code. 
 {% include rekall_malfind.html %}
 
+Die Ausgabe ist extrem Lange und ich bin zurzeit noch nicht in der Lage alles dazu zu erklären. Ein wichtiger Punkt ist die "MZ" Marke, da es sich dabei um ausführbaren Code handelt.
+
+<img style="float: right;" src="../assets/img/MZausgabe.png">
 
 
 ### Prozesse Extrahieren
