@@ -353,7 +353,7 @@ Wie bereits erwähnt sollten die schädlichen 2 Prozesse, Funktionen aufrufen di
 Dafür aber indizien aufgeben für einen Schädling. Bsonders eine RAT *(Remote Access Tool)* wird vermutbar sein.
 Da diese Art von Viren viel Kontrolle benötigen, darunter Kontrolle über Fenster, Tasteneingaben, Mausführung ect.
 
-<pre><code>strings --print-file-name --data --encoding=s executable.lsass.exe*  | grep --perl-regexp <font color="#FFA54F">ZwMapViewOfSection|ZwCreateSection|ZwOpenFile|ZwClose|ZwQueryAttributesFile|ZwQuerySection"</font></code></pre>
+<pre><code>strings --print-file-name --data --encoding=s executable.lsass.exe*  | grep --perl-regexp <font color="#FFA54F">"ZwMapViewOfSection|ZwCreateSection|ZwOpenFile|ZwClose|ZwQueryAttributesFile|ZwQuerySection"</font></code></pre>
 
 ### Assembly-Code analysieren
 
