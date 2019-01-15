@@ -451,7 +451,7 @@ if __name__=="__main__":
     print("Start")
     cmpStrings()
 {% endhighlight %}
-<a href="https://raw.githubusercontent.com/lauliger/IT-Sicherheit/master/script.py" download="download">script.py herunterladen</a>
+<a href="../script.py" download="download">script.py herunterladen</a>
 {% highlight bash %}
 shasum:   e07034165a3030b2707e432149e3dc4a913c32f4
 {% endhighlight %}
