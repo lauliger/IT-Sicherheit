@@ -151,24 +151,25 @@ Daher ist es für einen Forensiker interessant zu wissen auf welche DLLs ein Pro
 
 ### Dll Anbindung
 
-lsass.exe pid: 680                                                                                        
-Command line : C:\WINDOWS\system32\lsass.exe                                                              
-Service Pack 3                                                                                          
+lsass.exe pid: 680
+Command line : C:\WINDOWS\system32\lsass.exe
+Service Pack 3
 
 |base|size|reason|dll_path|
 |----|----|------|--------|
 |0x1000000|0x6000|65535|C:\WINDOWS\system32\lsass.exe|
 |0x7c900000|0xaf000|65535|C:\WINDOWS\system32\ntdll.dll|
 |0x7c800000|0xf6000|65535|C:\WINDOWS\system32\kernel32.dll|
+
 +54 weitere...
 
 
-lsass.exe pid: 868                                                                                            
-Command line : "C:\WINDOWS\\system32\\lsass.exe"                                                              
-Service Pack 3                                                                                                
+lsass.exe pid: 868
+Command line : "C:\WINDOWS\\system32\\lsass.exe"
+Service Pack 3
 
 |base|size|reason|dll_path|
-|----|----|------|--------|                                                            
+|----|----|------|--------|
 |0x1000000|0x6000|65535|C:\WINDOWS\system32\lsass.exe|
 |0x7c900000|0xaf000|65535|C:\WINDOWS\system32\ntdll.dll|
 |0x7c800000|0xf6000|65535|C:\WINDOWS\system32\kernel32.dll|
@@ -179,12 +180,12 @@ Service Pack 3
 |0x77f10000|0x49000|65535|C:\WINDOWS\system32\GDI32.dll|
 
 
-lsass.exe pid: 1928                                                                                           
-Command line : "C:\WINDOWS\\system32\\lsass.exe"                                                              
-Service Pack 3                                                                                                
+lsass.exe pid: 1928
+Command line : "C:\WINDOWS\\system32\\lsass.exe"
+Service Pack 3
 
 |base|size|reason|dll_path|
-|----|----|------|--------|                                                           
+|----|----|------|--------|
 |0x1000000|0x6000|65535|C:\WINDOWS\system32\lsass.exe|
 |0x7c900000|0xaf000|65535|C:\WINDOWS\system32\ntdll.dll|
 |0x7c800000|0xf6000|65535|C:\WINDOWS\system32\kernel32.dll|
@@ -192,6 +193,7 @@ Service Pack 3
 |0x77e70000|0x92000|65535|C:\WINDOWS\system32\RPCRT4.dll|
 |0x77fe0000|0x11000|65535|C:\WINDOWS\system32\Secur32.dll|
 |0x7e410000|0x91000|65535|C:\WINDOWS\system32\USER32.dll|
+
 +21 weitere...
 
 Der legitime Prozess hat viel mehr DLLs eingebunden als die 2 ilegitimen Prozesse.
