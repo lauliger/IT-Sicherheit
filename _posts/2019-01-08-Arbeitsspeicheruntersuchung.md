@@ -352,8 +352,24 @@ Die nun Extrahierten .exe Dateien, können mit Tools wie __strings__ untersucht 
 Wie bereits erwähnt sollten die schädlichen 2 Prozesse, Funktionen aufrufen die atypisch für Authentifizierungsserver sind.
 Dafür aber indizien aufgeben für einen Schädling. Bsonders eine RAT *(Remote Access Tool)* wird vermutbar sein.
 Da diese Art von Viren viel Kontrolle benötigen, darunter Kontrolle über Fenster, Tasteneingaben, Mausführung ect.
+Dazu müsste ein neuer Terminal geöffnet werden und folgender Befehl eingegeben werden:
 
 <pre><code>strings --print-file-name --data --encoding=s executable.lsass.exe*  | grep --perl-regexp <font color="#FFA54F">"ZwMapViewOfSection|ZwCreateSection|ZwOpenFile|ZwClose|ZwQueryAttributesFile|ZwQuerySection"</font></code></pre>
+
+<pre><code>
+executable.lsass.exe_1928.exe: ZwMapViewOfSection
+executable.lsass.exe_1928.exe: ZwCreateSection
+executable.lsass.exe_1928.exe: ZwOpenFile
+executable.lsass.exe_1928.exe: ZwClose
+executable.lsass.exe_1928.exe: ZwQueryAttributesFile
+executable.lsass.exe_1928.exe: ZwQuerySection
+executable.lsass.exe_868.exe: ZwMapViewOfSection
+executable.lsass.exe_868.exe: ZwCreateSection
+executable.lsass.exe_868.exe: ZwOpenFile
+executable.lsass.exe_868.exe: ZwClose
+executable.lsass.exe_868.exe: ZwQueryAttributesFile
+executable.lsass.exe_868.exe: ZwQuerySection
+</code></pre>
 
 ### Assembly-Code analysieren
 
