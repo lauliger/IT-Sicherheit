@@ -276,7 +276,7 @@ __0x81c498c8 lsass.exe   868__
 
 |base|in_load|in_init|in_mem|mapped|
 |----|-------|-------|------|------|
-|0x80000 __False__   __False__   __False__        
+|0x80000|__False__|__False__|__False__|
 |0x7c900000|*True*|*True*|*True*|\WINDOWS\system32\ntdll.dll|
 |0x77e70000|*True*|*True*|*True*|\WINDOWS\system32\rpcrt4.dll|
 |0x7c800000|*True*|*True*|*True*|\WINDOWS\system32\kernel32.dll|
