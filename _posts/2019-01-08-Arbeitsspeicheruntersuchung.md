@@ -395,9 +395,12 @@ Das erste stellt das Original dar und das zweite wird mit dem ersten verglichen.
 {% highlight bash %}
 python script.py executable.lsass.exe_680.exe executable.lsass.exe_868.exe
 {% endhighlight %}
+<p></p>
 __Ausgabe:__
 
 <img style="float: right;" src="../assets/img/scriptausgabe.png"> 
+
+<p></p>
 
 {% highlight python %}
 from sys import argv
