@@ -381,7 +381,8 @@ Daher endet dieser Blog fürs erste an diesem Punkt.
 
 ### Fazit
 
-
+Dieses Projekt hat mir sehr viel Spass gemacht und ich habe die IT-Forensik kennengelernt.
+Da die Begeisterung mich nicht loslässt, wird dieser Blog weiterhin ausgebaut.
 
 ### Scripte
 
@@ -451,7 +452,7 @@ if __name__=="__main__":
     print("Start")
     cmpStrings()
 {% endhighlight %}
-<a href="../script.py" download="download">script.py herunterladen</a>
+<a href="../script.py" download="script.py">script.py herunterladen</a>
 {% highlight bash %}
 shasum:   e07034165a3030b2707e432149e3dc4a913c32f4
 {% endhighlight %}
