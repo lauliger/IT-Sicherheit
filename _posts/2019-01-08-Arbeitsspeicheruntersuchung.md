@@ -286,6 +286,7 @@ __0x81c498c8 lsass.exe   868__
 |0x77f10000|*True*|*True*|*True*|\WINDOWS\system32\gdi32.dll|
 |0x77dd0000|*True*|*True*|*True*|\WINDOWS\system32\advapi32.dll|
 
+{% include start.html %}
 
 __0x81c47c00 lsass.exe  1928__
 
@@ -323,8 +324,20 @@ __0x81c47c00 lsass.exe  1928__
 |0x71aa0000|*True*|*True*|*True*|\WINDOWS\system32\ws2help.dll|
 |0x77b20000|*True*|*True*|*True*|\WINDOWS\system32\msasn1.dll|
 
+{% include ende.html %}
+
+Durch diese Ausgaben erkennen wir dass unsere 2 verdächtigen mehrere DLLs unverlinkt haben.
+Hier noch ein Bild wie die "unlinking DLLs" sich vorgestellt werden kann:
+
+
+
 
 ### Scannen von Prozessen
+
+Ein Scan mit der Funktion "malfind" könnte den Verdacht bestätigen. Denn malfind untersucht Prozesse nach eingeschleusten Code. 
+{% include rekall_malfind.html %}
+
+
 
 ### Prozesse Extrahieren
 
