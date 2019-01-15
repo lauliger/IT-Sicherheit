@@ -327,7 +327,7 @@ __0x81c47c00 lsass.exe  1928__
 Durch diese Ausgaben erkennen wir dass unsere 2 verdächtigen mehrere DLLs unverlinkt haben.
 Hier noch ein Bild wie die "unlinking DLLs" sich vorgestellt werden kann:
 
-<img style="float: right;" src="IT-Sicherheit/assets/img/hideDll.png">
+<img style="float: right;" src="../assets/img/hideDll.png">
 
 
 ### Scannen von Prozessen
