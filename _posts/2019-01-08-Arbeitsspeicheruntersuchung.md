@@ -425,7 +425,7 @@ python script.py executable.lsass.exe_680.exe executable.lsass.exe_868.exe
 <p></p>
 __Ausgabe:__
 
-<img style="float: right;" src="../assets/img/scriptausgabe.png"> 
+<img style="float: right;" alt="Ausgabe des Python-Skriptes" src="../assets/img/scriptausgabe.png"> 
 
 Die Zeilen mit [+] bedeuten dass diese Strings in beiden Dateien vorkommen.
 Die mit [!] hingegen, dass sie bei der ersten Datei nicht vorkommen.
