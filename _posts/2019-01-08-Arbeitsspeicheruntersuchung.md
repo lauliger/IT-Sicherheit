@@ -1,11 +1,3 @@
-
-
-
-''' python
-def main():
-    print("hallo")
-'''
-
 ---
 layout: post
 title: "Arbeitsspeicheruntersuchung"
