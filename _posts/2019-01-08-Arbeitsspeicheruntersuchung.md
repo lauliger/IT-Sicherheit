@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="../_sass/newSyntax.css" />
 ---
 layout: post
 title: "Arbeitsspeicheruntersuchung"
