@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../_sass/newSyntax.css" />
+
 
 
 ''' python
