@@ -428,6 +428,7 @@ __Ausgabe:__
 <img style="float: right;" alt="Ausgabe des Python-Skriptes" src="../assets/img/scriptausgabe.png"> 
 
 Die Zeilen mit [+] bedeuten dass diese Strings in beiden Dateien vorkommen.
+
 Die mit [!] hingegen, dass sie bei der ersten Datei nicht vorkommen.
 
 Quellcode
