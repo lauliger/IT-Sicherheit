@@ -1,4 +1,11 @@
 <link rel="stylesheet" href="../_sass/newSyntax.css" />
+
+
+''' python
+def main():
+    print("hallo")
+'''
+
 ---
 layout: post
 title: "Arbeitsspeicheruntersuchung"
