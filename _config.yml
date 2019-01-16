@@ -2,7 +2,7 @@
 title:              IT-Sicherheit
 bio:                'Anleitungen und Scripte rund um IT-Sicherheit.'
 description:        "Projektarbeit IT-Sicherheit"
-reading_time:       true
+reading_time:       false
 words_per_minute:   200
 logo:               'assets/img/sec2.png'
 background:         'assets/img/secWall001.jpg'
