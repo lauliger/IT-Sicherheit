@@ -151,6 +151,11 @@ Daher ist es für einen Forensiker interessant zu wissen auf welche DLLs ein Pro
 
 ### Dll Anbindung
 
+{% highlight bash %}
+[1] stuxnet.vmem 23:55:00> dlllist[680,868,1928]
+{% endhighlight %}
+
+
 lsass.exe pid: 680
 Command line : C:\WINDOWS\system32\lsass.exe
 Service Pack 3
