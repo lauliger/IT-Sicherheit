@@ -1,7 +1,7 @@
 # Site
 title:              IT-Sicherheit
 bio:                'Anleitungen und Scripte rund um IT-Sicherheit.'
-description:        "Ich bin Student bei der TEKO Olten und beschäftige mich in meiner Freizeit mit verschiedenen IT-Gebieten."
+description:        "Projektarbeit IT-Sicherheit"
 reading_time:       true
 words_per_minute:   200
 logo:               'assets/img/sec2.png'
@@ -14,7 +14,7 @@ url:                https://lauliger.github.io/IT-Sicherheit
 # Jekyll
 permalink:          /:title/
 markdown:           kramdown
-highlighter:        pygments
+highlighter:        rouge
 kramdown:
   auto_ids:         true
   footnote_nr:      1
