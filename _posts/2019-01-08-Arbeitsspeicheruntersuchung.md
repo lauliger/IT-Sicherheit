@@ -47,7 +47,6 @@ rekall -filename /home/user/Downloads/stuxnet.vmem
 ### Prozessliste einsehen
 
 Um überhaupt eine Vorstellung der Lage zu bekommen, beginnen wir mit der Einsicht in die Prozessliste.
-> Kommt dem Einsehen des Tatortes gleich.
 Mit dem Befehl __pstree__ können alle Prozesse angezeigt werden, die zur Laufzeit, als das Abbild erstellt wurde, aktiv waren.
 
 {% highlight bash %}
