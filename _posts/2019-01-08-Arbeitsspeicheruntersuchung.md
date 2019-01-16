@@ -7,21 +7,25 @@ tags: [Rekall, Linux, Arbeitsspeicher, Dumb, Memory Dumb]
 comments: false
 ---
 
+*Dieser Blogeintrag enstand durch eine Zusammenarbeit von Fatos Shala und Patrick Rüfenacht, im schulischem Umfeld bei der TEKO Olten.*
+
 ## Was ist *Memory Forensik*?
 
-*"Memory Forensik" (Arbeitsspeicheruntersuchung)* beschreibt die __Sicherung__ des Arbeitsspeichers in Form eines Abbildes und das __Untersuchen__ des Abbildes auf ein mögliches Sicherheitsvorfalls.
-Bei all den Vorteilen die eine Arbeitsspeicheruntersuchung gegenüber der traditionellen Untersuchung von persistentem Speicher bietet, ist es keine Überraschung, dass es heutzutage zu den ersten Schritten bei einem Sicherheitsvorfall zählt.
+*"Memory Forensik" (Arbeitsspeicheruntersuchung)* beschreibt die __Sicherung__ des Arbeitsspeichers in Form eines Abbildes 
+und das __Untersuchen__ des Abbildes auf ein mögliches Sicherheitsvorfalls.
+Bei all den Vorteilen die eine Arbeitsspeicheruntersuchung gegenüber der traditionellen Untersuchung von persistentem Speicher bietet, 
+ist es keine Überraschung, dass es heutzutage zu den ersten Schritten bei einem Sicherheitsvorfall zählt.
 Einige wichtige Punkte die für die Arbeitsspeicheruntersuchung sprechen:
 
 {% include Vorteile.html %}
 
 ## Warnung
 
-Beim herunterladen so wie auch beim untersuchen einer infizierten Dumb, könnten sie ihr eigenes System infizieren.
+Beim herunterladen so wie auch beim untersuchen vom infizierten Abbild, könnte sich das eigene System infizieren.
 Daher wird eine virtuelle Umgebung empfohlen und diese sollte nicht im Zusammenhang mit privaten Daten stehen.
-Untersuchen sie infizierte Dumbs nie in einer sensiblen Netzwerkumgebung, wie z.B bei der Arbeit oder in der Schule.
+Untersuche infizierte Abbilder nie in einer sensiblen Netzwerkumgebung, wie z.B bei der Arbeit oder in der Schule.
 Solche Untersuchungen müssen genehmigt werden und sollten unter einhaltung aller Sicherheitsmassnahmen durchgeführt werden.
-Bitte respektieren sie die Privatsphäre so wie auch das Sicherheitsbedürfnis von anderen.
+Bitte __respektiere__ die __Privatsphäre__ so wie auch das __Sicherheitsbedürfnis__ von Anderen.
 
 ## Vorbereitungen
 
@@ -31,8 +35,10 @@ Bitte respektieren sie die Privatsphäre so wie auch das Sicherheitsbedürfnis v
 
 ## Mit der Untersuchung beginnen
 
-Nun da alle Vorbereitungen abgeschlossen wurden und auch schon ein Abbild zur Untersuchung bereit steht, können wir mit dieser Anfangen.
-Da wir die ganze Zeit über aus dem gleichen Abbild lesen, ist es bequemer Rekall gleich interaktiv mit geladenem Abbild zu starten:
+Ab diesem Punkt können wir mit der eigentlichen Arbeit beginnen.
+Die Arbeit mit rekall (oder Volatility) beim untersuchen von Arbeitsspeicherabbildern, erinnert schon fast an einer Dedektivarbeit.
+So gesehen, haben wir ein Tatort *(das Abbild)*, unsere Werkzeuge *(rekall)* und brauchen jetzt Verdächtige.
+Fangen wir mit der Arbeit an, indem wir rekall im interaktiven Modus starten und dazu das Abbild laden.
 
 {% highlight bash %}
 rekall -filename /home/user/Downloads/stuxnet.vmem
@@ -41,6 +47,7 @@ rekall -filename /home/user/Downloads/stuxnet.vmem
 ### Prozessliste einsehen
 
 Um überhaupt eine Vorstellung der Lage zu bekommen, beginnen wir mit der Einsicht in die Prozessliste.
+> Kommt dem Einsehen des Tatortes gleich.
 Mit dem Befehl __pstree__ können alle Prozesse angezeigt werden, die zur Laufzeit, als das Abbild erstellt wurde, aktiv waren.
 
 {% highlight bash %}
@@ -83,9 +90,12 @@ stuxnet.vmem 22:30:00> pstree
 
 ### Verdächtige Prozesse
 
-Um aus der pstree Ausgabe vernünftig Indizien zu sammeln, benötigt man Erfahrung und Wissen über die Betriebssysteme die man untersucht. Was hier schon für viele erfahrene XP nutzer ins Auge sticht: "lsass.exe" kommt 3x vor obwohl dieser Prozess eigentlich nur einmal vorkommen sollte.
+Um aus der pstree-Ausgabe vernünftig Indizien zu sammeln, benötigt man Erfahrung und Wissen über die Betriebssysteme die man untersucht.
+Was hier schon für viele erfahrene XP nutzer ins Auge sticht: "lsass.exe" kommt 3x vor obwohl dieser Prozess eigentlich nur einmal vorkommen sollte.
 Diese Beobachtung zu grunde liegend, nehmen wir die Prozesse 680, 868 und 1928 genauer unter die Lupe.
-Zurzeit sind alle 3 Prozesse gleichviel verdächtigt.
+Zurzeit sind alle 3 Prozesse gleichermassen verdächtigt.
+Wobei bei Prozess 680 der Erstelldatum für dessen validität spricht.
+Da das Datum den, der anderen SYSTEM-Prozessen gleicht.
 
 #### WindowsXP Standardprozesse
 
@@ -95,7 +105,7 @@ Von der Uni-Regensburg, ist online eine dokumentierte Liste über die Standardpr
 
 ### Optionen evaluieren
 
-Unter den 3 verdächtigen Prozessen, befinden sich 2 mögliche Schädlinge und einer, der wohl das Vorbild der Verschleierungsversuche ist, der eine valide Windows Standardprozess darstellt.
+Unter diesen 3 "lsass.exe" Prozessen, müsste einer valid und somit sauber sein, während 2 womöglich Schadcode beinhalten.
 Doch wie wollen wir das nun herausfinde? Um den 2 gefälschten Prozessen auf die Spur zu kommen, haben wir ein breites Spektrum an Ansätzen und Möglichkeiten.
 Auch hier, um einen Anhaltspunkt für das weitere Vorgehen zu finden, brauchen wir mehr Informationen.
 Eine einfache __Google-Suche__ mit den Worten "lsass.exe windows xp" könnte uns interessante Informationen aufzeigen.
@@ -103,12 +113,15 @@ Eine einfache __Google-Suche__ mit den Worten "lsass.exe windows xp" könnte uns
 
 Daraus können wir folgende Fakten ziehen:
 * lsass.exe liegt im Ordner "C:\Windows\System32"
-* lsass.exe steht auf SYSTEM level und hat somit sehr hohe Rechte
-* lsass.exe ist ein lokaler Sicherheit-Authentifizierungsserver Funktionen die bei einem Trojaner typisch sind (Kontrolle von Fenstern oder das Bewegen der Maus, oder Tastaturschläge) gehören nicht zu seinen Funktionsliste
+* lsass.exe steht auf SYSTEM level und hat somit sehr hohe Rechte/Priorität
+* lsass.exe ist ein lokaler Sicherheit-Authentifizierungsserver.
+  Funktionen die bei einem Trojaner typisch sind (Kontrolle von Fenstern oder das Bewegen der Maus, oder Tastaturschläge) gehören nicht zu seinen Funktionsliste
 
 ### Rechtestufen
 
-Da der valide Prozess "lsass.exe" SYSTEM-Rechte besitzt, müsste der valide Prozess grösser-gleich __(>=)__ Rechte zu den 2 Prozessen haben. Wenn wir Glück haben, sollte bei dieser Untersuchung ein Prozess höhere Rechte haben als die beiden anderen. So wissen wir welcher der valide Prozess ist.
+Da der valide Prozess "lsass.exe" SYSTEM-Rechte besitzt, müsste der valide Prozess grösser-gleich __(>=)__ Rechte zu den 2 Prozessen haben, die nicht zu den Standardprozessen von WindowsXP gehören.
+Wenn wir Glück haben, sollte bei dieser Untersuchung ein Prozess höhere Rechte haben als die beiden anderen.
+So wissen wir welcher der valide Prozess ist.
 Mittels Rekall lassen sich die Rechte der einzelnen Prozesse aufzeigen:
 
 {% highlight bash %}
@@ -132,7 +145,10 @@ stuxnet.vmem 22:42:00> tokens proc_regex=('lsass.exe')
 
 An dieser Ausgabe ist zu erkennen, dass alle 3 Verdächtigen die gleiche Berechtigung besitzen.
 Somit konnte kein valider Prozess herauskristallisiert werden.
-Es gibt noch die Möglichkeit um die Priorität zu überprüfen. Denn der legitime Prozess sollte dank seinem SYSTEM-Level auch entsprechend höhere Priorität besitzen. Tatsächlich besitzen bei Windows "normale" Anwendungen max. ein Prioritätlevel von 8, wohingegen SYSTEM-Anwendungen ein Level von 9 besitzen.
+Es gibt noch die Möglichkeit um die Priorität zu überprüfen.
+Denn der legitime Prozess sollte dank seinem SYSTEM-Level auch entsprechend höhere Priorität besitzen.
+Tatsächlich besitzen bei Windows "normale" Anwendungen max. ein Prioritätlevel von 8, 
+wohingegen SYSTEM-Anwendungen ein Level von 9 besitzen.
 
 {% highlight bash %}
 stuxnet.vmem 22:48:00> SELECT _EPROCESS.name, _EPROCESS.pid, _EPROCESS.Pcb.BasePriority FROM pslist() WHERE regex_proc("lsass.exe", _EPROCESS.name)
@@ -148,14 +164,14 @@ Weiter wird die Ausgabe von pslist() durch __WHERE__ gefiltert, nur Daten die al
 |868|lsass.exe|8|
 |1928|lsass.exe|8|
 
-Durch diese Ausgabe, sehen wir dass die Priorität von Prozess 680 höher liegt, als die der anderen beiden.
-Wir können bereits jetzt davon reden, dass es sich beim Prozess 680 um das valide lsass.exe handelt.
+Durch diese Ausgabe, sehen wir dass die Priorität von Prozess 680 höher liegt, als die der anderen beiden Prozesse.
+Wir können bereits jetzt davon ausgehen, dass es sich beim Prozess 680 um das valide lsass.exe handelt.
 Dafür sprechen 2 Punkte:
-* Das erstelldatum dass ein Jahr vor den anderen 2 Prozessen liegt und mit anderen legitimen SYSTEM-Prozessen gleich ligt.
+* Das Erstelldatum dass ein Jahr vor den anderen 2 Prozessen liegt und mit anderen legitimen SYSTEM-Prozessen gleich liegt.
 * Die höhere Priorität die durch den SYSTEM-Level kommt.
 
 Es liegt nun auf der Hand welches der 3 Prozesse valid ist und welche 2 verdächtigt werden Schadcode zu beinhalten.
-Dennoch können wir weiter die Prozesse untersuchen. Evtl können wir so den Handlungsradius bestimmen.
+Wir untersuchen dennoch weiter die Prozesse. Evtl können wir so den Handlungsradius bestimmen.
 Wichtig für die Handlungsmöglichkeiten eines Prozesses, sind die Funktionen die es verwendet/besitzt.
 Viele Funktionen finden sich in DLL-Dateien. Das sind ganze Bibliotheken von Funktionen.
 Auch die Framework-Funktionen die Windowseigene Alogrithmen beinhalten, stellen diese über DLLs bereit.
@@ -214,13 +230,14 @@ Service Pack 3
 +21 weitere...
 
 Der legitime Prozess hat viel mehr DLLs eingebunden als die 2 ilegitimen Prozesse.
-Das überrascht nicht, da ein Programmierer von Schadcode, zwar Funktionen von der Framework benötigt, aber nicht alle.
+Das überrascht nicht, da ein Programmierer von Schadcode, zwar evtl. Funktionen von der Framework benötigt, aber nicht alle.
 Wozu den Schadcode unnötig aufblähen?
 Natürlich ist das nur eine Interpretation und kann höchstens als Indiz und nicht als Beweis gewertet werden.
 Was wir wissen müssen, DLL-Anbindungen können absichtlich verschleiert werden.
 Ein Weg dies zu tun ist das unlinken von DLLs aus der PEB. {% include PEB.html %}
 
-Mit "ldrmodules" untersuchen wir die ldr Einträge, dabei handelt es sich um eingetragene Pointer die Informationen über geladene DLLs beinhalten. Dort wird in der Antiforensik angesetzt um DLLs vor einer Untersuchung zu verstecken.
+Mit "ldrmodules" untersuchen wir die ldr Einträge, dabei handelt es sich um einen Zeiger, der auf eine <a href="https://docs.microsoft.com/en-us/windows/desktop/api/winternl/ns-winternl-_peb_ldr_data">Struktur</a> zeigt, in dem Informationen über geladene DLLs zu finden sind.
+Dort wird in der Antiforensik angesetzt um DLLs vor einer Untersuchung zu verstecken.
 
 {% highlight bash %}
 stuxnet.vmem 22:59:00> ldrmodules[680,868,1928]
@@ -372,8 +389,8 @@ stuxnet.vmem 23:55:00> procdump[680,868,1928],dump_dir="./out"
 
 Die nun Extrahierten .exe Dateien, können mit Tools wie __strings__ untersucht werden.
 Wie bereits erwähnt sollten die schädlichen 2 Prozesse, Funktionen aufrufen die atypisch für Authentifizierungsserver sind.
-Dafür aber indizien aufgeben für einen Schädling. Bsonders eine RAT *(Remote Access Tool)* wird vermutbar sein.
-Da diese Art von Viren viel Kontrolle benötigen, darunter Kontrolle über Fenster, Tasteneingaben, Mausführung ect.
+Dafür aber Indizien aufgeben für einen Schädling. Besonders eine RAT *(Remote Access Tool)* wird vermutbar sein,
+da diese Art von Viren viel Kontrolle benötigen, darunter Kontrolle über Fenster, Tasteneingaben, Mausführung, Dokumente, Verzeichnisse ect.
 Dazu müsste ein neuer Terminal geöffnet werden und folgender Befehl eingegeben werden:
 
 {% highlight bash %}
@@ -396,6 +413,7 @@ executable.lsass.exe_868.exe: ZwQuerySection
 </code></pre>
 
 Prozess 680 fehlt in der Ausgabe. Ein Authentifizierungsserver würde diese Funktionen nicht benötigen.
+Alle Untersuchungschritte weisen unmisverständlich darauf hin, dass Prozess 680 der legitime originale "lsass.exe" ist.
 
 ### Assembly-Code analysieren
 
