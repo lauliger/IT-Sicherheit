@@ -345,8 +345,7 @@ __0x81c47c00 lsass.exe  1928__
 Durch diese Ausgaben erkennen wir dass unsere 2 verdächtigen mehrere DLLs unverlinkt haben.
 Hier noch ein Bild wie die "unlinking DLLs" sich vorgestellt werden kann:
 
-<img style="float: right;" src="../assets/img/hideDll.png">
-
+<a href="../assets/img/hideDll.png" ><img width="300" height="214" src="../assets/img/hideDll.png"/></a>
 
 ### Scannen von Prozessen
 
@@ -358,8 +357,7 @@ stuxnet.vmem 23:14:00> malfind[680,868,1928]
 
 Die Ausgabe ist extrem Lange und ich bin zurzeit noch nicht in der Lage alles dazu zu erklären. Ein wichtiger Punkt ist die "MZ" Marke, da es sich dabei um ausführbaren Code handelt.
 
-<img style="float: right;" src="../assets/img/mz.png">
-
+<a href="../assets/img/mz.png" ><img width="300" height="214" src="../assets/img/mz.png"/></a>
 
 ### Prozesse Extrahieren
 
@@ -425,8 +423,7 @@ python script.py executable.lsass.exe_680.exe executable.lsass.exe_868.exe
 <p></p>
 __Ausgabe:__
 
-<img style="float: right;" alt="Ausgabe des Python-Skriptes" src="../assets/img/scriptausgabe.png">
-<a href="../assets/img/scriptausgabe.png" ><img width="300" height="214" src="../assets/img/scriptausgabe.png"/></a>
+<a href="../assets/img/scriptausgabe.png" alt="Vergleichen mit dem Python-Skript"><img width="300" height="214" src="../assets/img/scriptausgabe.png"/></a>
 
 Die Zeilen mit [+] bedeuten dass diese Strings in beiden Dateien vorkommen. 
 Die mit [!] hingegen, dass sie bei der ersten Datei nicht vorkommen.
