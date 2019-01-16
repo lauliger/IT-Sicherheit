@@ -14,7 +14,7 @@ url:                https://lauliger.github.io/IT-Sicherheit
 # Jekyll
 permalink:          /:title/
 markdown:           kramdown
-highlighter:        rouge
+highlighter:        pygments
 kramdown:
   auto_ids:         true
   footnote_nr:      1
@@ -27,7 +27,7 @@ sass:
   style:            compressed
 
 # Comments
-disqus_shortname:   taylantatli
+disqus_shortname:   itsec
 
 # Social
 # if you don't have any of social below, comment the line.
