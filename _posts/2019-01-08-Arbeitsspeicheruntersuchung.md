@@ -33,13 +33,19 @@ Bitte respektieren sie die Privatsphäre so wie auch das Sicherheitsbedürfnis v
 
 Nun da alle Vorbereitungen abgeschlossen wurden und auch schon ein Abbild zur Untersuchung bereit steht, können wir mit dieser Anfangen.
 Da wir die ganze Zeit über aus dem gleichen Abbild lesen, ist es bequemer Rekall gleich interaktiv mit geladenem Abbild zu starten:
-{% include Rekall_Open.html %}
+
+{% highlight bash %}
+rekall -filename /home/user/Downloads/stuxnet.vmem
+{% endhighlight %}
 
 ### Prozessliste einsehen
 
 Um überhaupt eine Vorstellung der Lage zu bekommen, beginnen wir mit der Einsicht in die Prozessliste.
 Mit dem Befehl __pstree__ können alle Prozesse angezeigt werden, die zur Laufzeit, als das Abbild erstellt wurde, aktiv waren.
-{% include Rekall_Pstree.html %}
+
+{% highlight bash %}
+stuxnet.vmem 22:30:00> pstree
+{% endhighlight %}
 
 | _EPROCESS | ppid | thd_count | hnd_count | create_time |
 |-------|--------|---------|---------|---------|
@@ -104,7 +110,10 @@ Daraus können wir folgende Fakten ziehen:
 
 Da der valide Prozess "lsass.exe" SYSTEM-Rechte besitzt, müsste der valide Prozess grösser-gleich __(>=)__ Rechte zu den 2 Prozessen haben. Wenn wir Glück haben, sollte bei dieser Untersuchung ein Prozess höhere Rechte haben als die beiden anderen. So wissen wir welcher der valide Prozess ist.
 Mittels Rekall lassen sich die Rechte der einzelnen Prozesse aufzeigen:
-{% include rekall_tokens.html %}
+
+{% highlight bash %}
+stuxnet.vmem 22:42:00> tokens proc_regex=('lsass.exe')
+{% endhighlight %}
 
 |Process|Sid|Comment|
 |-------|---|-------|
@@ -213,8 +222,9 @@ Ein Weg dies zu tun ist das unlinken von DLLs aus der PEB. {% include PEB.html %
 
 Mit "ldrmodules" untersuchen wir die ldr Einträge, dabei handelt es sich um eingetragene Pointer die Informationen über geladene DLLs beinhalten. Dort wird in der Antiforensik angesetzt um DLLs vor einer Untersuchung zu verstecken.
 
-{% include rekall_ldrmodules.html %}
-
+{% highlight bash %}
+stuxnet.vmem 22:59:00> ldrmodules[680,868,1928]
+{% endhighlight %}
 
 
 __0x81e70020 lsass.exe   680__
@@ -341,7 +351,10 @@ Hier noch ein Bild wie die "unlinking DLLs" sich vorgestellt werden kann:
 ### Scannen von Prozessen
 
 Ein Scan mit der Funktion "malfind" könnte den Verdacht bestätigen. Denn malfind untersucht Prozesse nach eingeschleusten Code. 
-{% include rekall_malfind.html %}
+
+{% highlight bash %}
+stuxnet.vmem 23:14:00> malfind[680,868,1928]
+{% endhighlight %}
 
 Die Ausgabe ist extrem Lange und ich bin zurzeit noch nicht in der Lage alles dazu zu erklären. Ein wichtiger Punkt ist die "MZ" Marke, da es sich dabei um ausführbaren Code handelt.
 
@@ -352,7 +365,10 @@ Die Ausgabe ist extrem Lange und ich bin zurzeit noch nicht in der Lage alles da
 
 Die Prozesse können zur weiteren Untersuchungen (Disassembly) aus dem Abbild extrahiert werden.
 Dazu:
-<pre><code>[1] <font color="#2e8b57">stuxnet.vmem</font> <font color="gray">23:55:00</font>> <font color="black">procdump[</font><font color="#551A8B">680,868,1928</font>],dump_dir<font color="red">=</font><font color="#FFA54F">"./out"</font></code></pre>
+
+{% highlight bash %}
+stuxnet.vmem 23:55:00> procdump[680,868,1928],dump_dir="./out"
+{% endhighlight %}
 
 ### Funktionszugriffe einsehen
 
@@ -362,7 +378,9 @@ Dafür aber indizien aufgeben für einen Schädling. Bsonders eine RAT *(Remote 
 Da diese Art von Viren viel Kontrolle benötigen, darunter Kontrolle über Fenster, Tasteneingaben, Mausführung ect.
 Dazu müsste ein neuer Terminal geöffnet werden und folgender Befehl eingegeben werden:
 
-<pre><code>strings --print-file-name --data --encoding=s executable.lsass.exe*  | grep --perl-regexp <font color="#FFA54F">"ZwMapViewOfSection|ZwCreateSection|ZwOpenFile|ZwClose|ZwQueryAttributesFile|ZwQuerySection"</font></code></pre>
+{% highlight bash %}
+strings --print-file-name --data --encoding=s executable.lsass.exe*  | grep --perl-regexp "ZwMapViewOfSection|ZwCreateSection|ZwOpenFile|ZwClose|ZwQueryAttributesFile|ZwQuerySection"
+{% endhighlight %}
 
 <pre><code>
 executable.lsass.exe_1928.exe: ZwMapViewOfSection
