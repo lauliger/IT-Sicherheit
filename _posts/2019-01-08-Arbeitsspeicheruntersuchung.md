@@ -41,7 +41,7 @@ So gesehen, haben wir ein Tatort *(das Abbild)*, unsere Werkzeuge *(rekall)* und
 Fangen wir mit der Arbeit an, indem wir rekall im interaktiven Modus starten und dazu das Abbild laden.
 
 {% highlight bash %}
-rekall -filename /home/user/Downloads/stuxnet.vmem
+rekall --filename /home/user/Downloads/stuxnet.vmem
 {% endhighlight %}
 
 ### Prozessliste einsehen
