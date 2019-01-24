@@ -446,7 +446,7 @@ Da die Begeisterung mich nicht loslässt, wird dieser Blog weiterhin ausgebaut.
 ### Scripte
 
 
-<details><summary>Stringsvergleich automatisieren</summary>
+__Stringsvergleich automatisieren__<details>
 Hier noch ein kleiner Script der die Ausgaben von Strings vergleicht.
 (Es wird noch ein Script folgen für das suchen von Verdächtigen Prozessen)
 
