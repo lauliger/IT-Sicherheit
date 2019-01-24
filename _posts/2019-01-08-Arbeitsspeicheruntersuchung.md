@@ -500,3 +500,4 @@ Die mit [!] hingegen, dass sie bei der ersten Datei nicht vorkommen.
 shasum:   e07034165a3030b2707e432149e3dc4a913c32f4
 {% endhighlight %}
 </details>
+<a href="../scripte/compStrings.py" download>Als File herunterladen</a>
