@@ -446,7 +446,8 @@ Da die Begeisterung mich nicht loslässt, wird dieser Blog weiterhin ausgebaut.
 ### Scripte
 
 
-* __Stringsvergleich automatisieren__<details><summary>[Ausklappen]</summary>
+* __Stringsvergleich automatisieren__
+<details><summary>[Ausklappen]</summary>
 Hier noch ein kleiner Script der die Ausgaben von Strings vergleicht.
 (Es wird noch ein Script folgen für das suchen von Verdächtigen Prozessen)
 
@@ -466,7 +467,7 @@ Die Zeilen mit [+] bedeuten dass diese Strings in beiden Dateien vorkommen.
 Die mit [!] hingegen, dass sie bei der ersten Datei nicht vorkommen.
 
 
-<details><summary><b>Quellcode</b></summary>
+<details><summary>Quellcode</summary>
     
     <pre style='color:#000020;background:#f6f8ff;'><span style='color:#200080; font-weight:bold; '>from</span> sys <span style='color:#200080; font-weight:bold; '>import</span> argv
 <span style='color:#200080; font-weight:bold; '>import</span> os
