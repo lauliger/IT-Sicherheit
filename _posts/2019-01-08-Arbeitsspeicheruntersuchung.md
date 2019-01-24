@@ -7,6 +7,24 @@ tags: [Rekall, Linux, Arbeitsspeicher, Dumb, Memory Dumb]
 comments: false
 ---
 
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
 *Dieser Blogeintrag enstand durch eine Zusammenarbeit von Fatos Shala und Patrick Rüfenacht, im schulischem Umfeld bei der TEKO Olten.*
 
 ## Was ist *Memory Forensik*?
@@ -499,5 +517,6 @@ Die mit [!] hingegen, dass sie bei der ersten Datei nicht vorkommen.
 {% highlight bash %}
 shasum:   e07034165a3030b2707e432149e3dc4a913c32f4
 {% endhighlight %}
-</details>
 <a href="../scripte/compStrings.py" download>Als File herunterladen</a>
+</details>
+
