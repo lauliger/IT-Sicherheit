@@ -414,7 +414,7 @@ Dazu müsste ein neuer Terminal geöffnet werden und folgender Befehl eingegeben
 strings --print-file-name --data --encoding=s executable.lsass.exe*  | grep --perl-regexp "ZwMapViewOfSection|ZwCreateSection|ZwOpenFile|ZwClose|ZwQueryAttributesFile|ZwQuerySection"
 {% endhighlight %}
 
-<pre><code>
+{% highlight bash %}
 executable.lsass.exe_1928.exe: ZwMapViewOfSection
 executable.lsass.exe_1928.exe: ZwCreateSection
 executable.lsass.exe_1928.exe: ZwOpenFile
@@ -427,7 +427,7 @@ executable.lsass.exe_868.exe: ZwOpenFile
 executable.lsass.exe_868.exe: ZwClose
 executable.lsass.exe_868.exe: ZwQueryAttributesFile
 executable.lsass.exe_868.exe: ZwQuerySection
-</code></pre>
+{% endhighlight %}
 
 Prozess 680 fehlt in der Ausgabe. Ein Authentifizierungsserver würde diese Funktionen nicht benötigen.
 Alle Untersuchungschritte weisen unmisverständlich darauf hin, dass Prozess 680 der legitime originale "lsass.exe" ist.
@@ -466,7 +466,8 @@ Die Zeilen mit [+] bedeuten dass diese Strings in beiden Dateien vorkommen.
 Die mit [!] hingegen, dass sie bei der ersten Datei nicht vorkommen.
 
 
-<details><summary>Quellcode</summary>
+<details><summary><b>Quellcode</b></summary>
+    
     <pre style='color:#000020;background:#f6f8ff;'><span style='color:#200080; font-weight:bold; '>from</span> sys <span style='color:#200080; font-weight:bold; '>import</span> argv
 <span style='color:#200080; font-weight:bold; '>import</span> os
 
