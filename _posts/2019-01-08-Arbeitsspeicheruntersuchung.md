@@ -496,7 +496,7 @@ Die mit [!] hingegen, dass sie bei der ersten Datei nicht vorkommen.
 </pre>
 <!--Created using ToHtml.com on 2019-01-24 14:11:33 UTC -->
 </details>
-
+{% highlight bash %}
 shasum:   e07034165a3030b2707e432149e3dc4a913c32f4
 {% endhighlight %}
 </details>
