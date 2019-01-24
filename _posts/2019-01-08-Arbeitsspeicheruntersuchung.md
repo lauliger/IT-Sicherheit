@@ -427,6 +427,8 @@ Da die Begeisterung mich nicht loslässt, wird dieser Blog weiterhin ausgebaut.
 
 ### Scripte
 
+
+<details><summary>Stringsvergleich automatisieren</summary>
 Hier noch ein kleiner Script der die Ausgaben von Strings vergleicht.
 (Es wird noch ein Script folgen für das suchen von Verdächtigen Prozessen)
 
@@ -445,55 +447,56 @@ __Ausgabe:__
 Die Zeilen mit [+] bedeuten dass diese Strings in beiden Dateien vorkommen. 
 Die mit [!] hingegen, dass sie bei der ersten Datei nicht vorkommen.
 
-Quellcode
 
-{% highlight python %}
-from sys import argv
-import os
+<details><summary>Quellcode</summary>
+    <pre style='color:#000020;background:#f6f8ff;'><span style='color:#200080; font-weight:bold; '>from</span> sys <span style='color:#200080; font-weight:bold; '>import</span> argv
+<span style='color:#200080; font-weight:bold; '>import</span> os
 
-class cl:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+<span style='color:#200080; font-weight:bold; '>class</span> cl<span style='color:#308080; '>:</span>
+    HEADER <span style='color:#308080; '>=</span> <span style='color:#1060b6; '>'</span><span style='color:#0f69ff; '>\0</span><span style='color:#1060b6; '>33[95m'</span>
+    OKBLUE <span style='color:#308080; '>=</span> <span style='color:#1060b6; '>'</span><span style='color:#0f69ff; '>\0</span><span style='color:#1060b6; '>33[94m'</span>
+    OKGREEN <span style='color:#308080; '>=</span> <span style='color:#1060b6; '>'</span><span style='color:#0f69ff; '>\0</span><span style='color:#1060b6; '>33[92m'</span>
+    <span style='color:#074726; '>WARNING</span> <span style='color:#308080; '>=</span> <span style='color:#1060b6; '>'</span><span style='color:#0f69ff; '>\0</span><span style='color:#1060b6; '>33[93m'</span>
+    FAIL <span style='color:#308080; '>=</span> <span style='color:#1060b6; '>'</span><span style='color:#0f69ff; '>\0</span><span style='color:#1060b6; '>33[91m'</span>
+    ENDC <span style='color:#308080; '>=</span> <span style='color:#1060b6; '>'</span><span style='color:#0f69ff; '>\0</span><span style='color:#1060b6; '>33[0m'</span>
+    BOLD <span style='color:#308080; '>=</span> <span style='color:#1060b6; '>'</span><span style='color:#0f69ff; '>\0</span><span style='color:#1060b6; '>33[1m'</span>
+    UNDERLINE <span style='color:#308080; '>=</span> <span style='color:#1060b6; '>'</span><span style='color:#0f69ff; '>\0</span><span style='color:#1060b6; '>33[4m'</span>
 
 
-def cmpStrings():
-    #Get List1
-    print("[ ] get strings of "+argv[1])
-    cmdReturn = os.popen("strings "+argv[1]).read()
-    firstList = buildList(cmdReturn)
-    print(cl.OKGREEN+"[+] "+str(argv[1])+" converted to a list..."+cl.ENDC)
-    print("[ ] get strings of "+argv[2])
-    cmdReturn = os.popen("strings "+argv[2]).read()
-    secondList = buildList(cmdReturn)
-    print(cl.OKGREEN+cl.BOLD+"[+] "+argv[2]+" converted to a list..."+cl.ENDC)
-    for c in secondList:
-        if(c in firstList):
-            print("[+] "+c)
-        else:
-            print(cl.FAIL+"[!] "+c+cl.ENDC)
+<span style='color:#200080; font-weight:bold; '>def</span> cmpStrings<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span><span style='color:#308080; '>:</span>
+    <span style='color:#595979; '>#Get List1</span>
+    <span style='color:#200080; font-weight:bold; '>print</span><span style='color:#308080; '>(</span><span style='color:#1060b6; '>"[ ] get strings of "</span><span style='color:#44aadd; '>+</span>argv<span style='color:#308080; '>[</span><span style='color:#008c00; '>1</span><span style='color:#308080; '>]</span><span style='color:#308080; '>)</span>
+    cmdReturn <span style='color:#308080; '>=</span> os<span style='color:#308080; '>.</span>popen<span style='color:#308080; '>(</span><span style='color:#1060b6; '>"strings "</span><span style='color:#44aadd; '>+</span>argv<span style='color:#308080; '>[</span><span style='color:#008c00; '>1</span><span style='color:#308080; '>]</span><span style='color:#308080; '>)</span><span style='color:#308080; '>.</span>read<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span>
+    firstList <span style='color:#308080; '>=</span> buildList<span style='color:#308080; '>(</span>cmdReturn<span style='color:#308080; '>)</span>
+    <span style='color:#200080; font-weight:bold; '>print</span><span style='color:#308080; '>(</span>cl<span style='color:#308080; '>.</span>OKGREEN<span style='color:#44aadd; '>+</span><span style='color:#1060b6; '>"[+] "</span><span style='color:#44aadd; '>+</span><span style='color:#400000; '>str</span><span style='color:#308080; '>(</span>argv<span style='color:#308080; '>[</span><span style='color:#008c00; '>1</span><span style='color:#308080; '>]</span><span style='color:#308080; '>)</span><span style='color:#44aadd; '>+</span><span style='color:#1060b6; '>" converted to a list..."</span><span style='color:#44aadd; '>+</span>cl<span style='color:#308080; '>.</span>ENDC<span style='color:#308080; '>)</span>
+    <span style='color:#200080; font-weight:bold; '>print</span><span style='color:#308080; '>(</span><span style='color:#1060b6; '>"[ ] get strings of "</span><span style='color:#44aadd; '>+</span>argv<span style='color:#308080; '>[</span><span style='color:#008c00; '>2</span><span style='color:#308080; '>]</span><span style='color:#308080; '>)</span>
+    cmdReturn <span style='color:#308080; '>=</span> os<span style='color:#308080; '>.</span>popen<span style='color:#308080; '>(</span><span style='color:#1060b6; '>"strings "</span><span style='color:#44aadd; '>+</span>argv<span style='color:#308080; '>[</span><span style='color:#008c00; '>2</span><span style='color:#308080; '>]</span><span style='color:#308080; '>)</span><span style='color:#308080; '>.</span>read<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span>
+    secondList <span style='color:#308080; '>=</span> buildList<span style='color:#308080; '>(</span>cmdReturn<span style='color:#308080; '>)</span>
+    <span style='color:#200080; font-weight:bold; '>print</span><span style='color:#308080; '>(</span>cl<span style='color:#308080; '>.</span>OKGREEN<span style='color:#44aadd; '>+</span>cl<span style='color:#308080; '>.</span>BOLD<span style='color:#44aadd; '>+</span><span style='color:#1060b6; '>"[+] "</span><span style='color:#44aadd; '>+</span>argv<span style='color:#308080; '>[</span><span style='color:#008c00; '>2</span><span style='color:#308080; '>]</span><span style='color:#44aadd; '>+</span><span style='color:#1060b6; '>" converted to a list..."</span><span style='color:#44aadd; '>+</span>cl<span style='color:#308080; '>.</span>ENDC<span style='color:#308080; '>)</span>
+    <span style='color:#200080; font-weight:bold; '>for</span> c <span style='color:#200080; font-weight:bold; '>in</span> secondList<span style='color:#308080; '>:</span>
+        <span style='color:#200080; font-weight:bold; '>if</span><span style='color:#308080; '>(</span>c <span style='color:#200080; font-weight:bold; '>in</span> firstList<span style='color:#308080; '>)</span><span style='color:#308080; '>:</span>
+            <span style='color:#200080; font-weight:bold; '>print</span><span style='color:#308080; '>(</span><span style='color:#1060b6; '>"[+] "</span><span style='color:#44aadd; '>+</span>c<span style='color:#308080; '>)</span>
+        <span style='color:#200080; font-weight:bold; '>else</span><span style='color:#308080; '>:</span>
+            <span style='color:#200080; font-weight:bold; '>print</span><span style='color:#308080; '>(</span>cl<span style='color:#308080; '>.</span>FAIL<span style='color:#44aadd; '>+</span><span style='color:#1060b6; '>"[!] "</span><span style='color:#44aadd; '>+</span>c<span style='color:#44aadd; '>+</span>cl<span style='color:#308080; '>.</span>ENDC<span style='color:#308080; '>)</span>
 
-def buildList(myString):
-    out=[]
-    actualStr=''
-    for c in str(myString):
-        if c != '\n':
-            actualStr += c
-        else:
-            out.append(actualStr)
-            actualStr = ''
-    return out
+<span style='color:#200080; font-weight:bold; '>def</span> buildList<span style='color:#308080; '>(</span>myString<span style='color:#308080; '>)</span><span style='color:#308080; '>:</span>
+    out<span style='color:#308080; '>=</span><span style='color:#308080; '>[</span><span style='color:#308080; '>]</span>
+    actualStr<span style='color:#308080; '>=</span><span style='color:#1060b6; '>''</span>
+    <span style='color:#200080; font-weight:bold; '>for</span> c <span style='color:#200080; font-weight:bold; '>in</span> <span style='color:#400000; '>str</span><span style='color:#308080; '>(</span>myString<span style='color:#308080; '>)</span><span style='color:#308080; '>:</span>
+        <span style='color:#200080; font-weight:bold; '>if</span> c <span style='color:#44aadd; '>!=</span> <span style='color:#1060b6; '>'</span><span style='color:#0f69ff; '>\n</span><span style='color:#1060b6; '>'</span><span style='color:#308080; '>:</span>
+            actualStr <span style='color:#44aadd; '>+</span><span style='color:#308080; '>=</span> c
+        <span style='color:#200080; font-weight:bold; '>else</span><span style='color:#308080; '>:</span>
+            out<span style='color:#308080; '>.</span>append<span style='color:#308080; '>(</span>actualStr<span style='color:#308080; '>)</span>
+            actualStr <span style='color:#308080; '>=</span> <span style='color:#1060b6; '>''</span>
+    <span style='color:#200080; font-weight:bold; '>return</span> out
 
-if __name__=="__main__":
-    print("Start")
-    cmpStrings()
-{% endhighlight %}
-<a href="../script.py" download="script.py">script.py herunterladen</a>
-{% highlight bash %}
+<span style='color:#200080; font-weight:bold; '>if</span> <span style='color:#074726; '>__name__</span><span style='color:#44aadd; '>==</span><span style='color:#1060b6; '>"__main__"</span><span style='color:#308080; '>:</span>
+    <span style='color:#200080; font-weight:bold; '>print</span><span style='color:#308080; '>(</span><span style='color:#1060b6; '>"Start"</span><span style='color:#308080; '>)</span>
+    cmpStrings<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span>
+</pre>
+<!--Created using ToHtml.com on 2019-01-24 14:11:33 UTC -->
+</details>
+
 shasum:   e07034165a3030b2707e432149e3dc4a913c32f4
 {% endhighlight %}
+</details>
