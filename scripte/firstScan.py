@@ -27,7 +27,7 @@ s = session.Session(
     "http://profiles.rekall-forensic.com"
     ])
 
-def rekallCMD():
+def getPsList():
     getResp = s.plugins.pslist()
     return getResp
 
@@ -63,7 +63,9 @@ def genList(src):
         processlist.append(tmpObj)
     return processlist
 
-#def getPriority(src):
+def getPriority(src):
+    getPrio = s.plugins.SELECT(_EPROCESS.name, _EPROCESS.pid, _EPROCESS.Pcb.BasePriority FROM pslist() WHERE regex_proc("lsass.exe", _EPROCESS.name))
+    
 def exportToJson(listOfObjects, pathToJson):
     outFile = open(pathToJson, "w")
     jsonList = json.dumps(listOfObjects, default=lambda o: o.__dict__, sort_keys=True, indent=4)
@@ -83,7 +85,7 @@ def importFromJson(pathToJson):
 
 if __name__ == '__main__':
     print(fileCheck())
-    print(rekallCMD())
+    print(getPsList())
     print("\n\n\n")
     exportToJsonWithExceptionIDs(genList(str(s.plugins.pslist())),["868","1928"], "./ausgabe.json")
     #exportToJson(genList(str(s.plugins.pslist())), "./ausgabe.json")
