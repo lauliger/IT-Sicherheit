@@ -107,8 +107,8 @@ MD5Hash:
 
 Befehl:
 <textarea id="cmdTxt" readonly rows="2" cols="65">echo "8f630be089e791cc23571ce51c73df0c" stuxnet.vmem.zip | md5sum -c -</textarea>
-    <button class="btn" onclick="cpCmd()"><i class="fa fa-clipboard"></i></button>
-<p></p>
+<button class="btn" onclick="cpCmd()"><i class="fa fa-clipboard"></i></button>
+
 
 ## Mit der Untersuchung beginnen
 
