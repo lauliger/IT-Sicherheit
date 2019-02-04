@@ -95,14 +95,18 @@ document.execCommand('copy');
 
 
 __Abbild mit Stuxnet__
+
 <a href="http://www.jonrajewski.com/data/Malware/stuxnet.vmem.zip">   Abbild als Zip herunterladen</a>
 
 Das Abbild stellt einen infizierten WindowsXP Rechner dar.
 Bitte überprüfe, ob es sich beim heruntergeladenen File wirklich um das angegebene Abbild handelt!
-        
-    <p>MD5Hash:</p><textarea id="md5Txt" readonly rows="2" cols="35">8f630be089e791cc23571ce51c73df0c</textarea>    <button class="btn" onclick="cpMdHash()"><i class="fa fa-clipboard"></i></button><p>Befehl:</p>
-    
-    <textarea id="cmdTxt" readonly rows="2" cols="65">echo "8f630be089e791cc23571ce51c73df0c" stuxnet.vmem.zip | md5sum -c -</textarea>
+
+MD5Hash:
+<textarea id="md5Txt" readonly rows="2" cols="35">8f630be089e791cc23571ce51c73df0c</textarea>
+<button class="btn" onclick="cpMdHash()"><i class="fa fa-clipboard"></i></button>
+
+Befehl:
+<textarea id="cmdTxt" readonly rows="2" cols="65">echo "8f630be089e791cc23571ce51c73df0c" stuxnet.vmem.zip | md5sum -c -</textarea>
     <button class="btn" onclick="cpCmd()"><i class="fa fa-clipboard"></i></button>
 <p></p>
 
