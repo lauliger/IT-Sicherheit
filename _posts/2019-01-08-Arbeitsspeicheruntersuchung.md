@@ -34,13 +34,13 @@ ist es keine Überraschung, dass es heutzutage zu den ersten Schritten bei einem
 Einige wichtige Punkte, die für die Arbeitsspeicheruntersuchung sprechen:
 
 <summary>Kleiner Angriffsvektor</summary>
-<p><i>Heutzutage bewegen sich selbst einfache Benutze in Speichergrössen von über 1 Terabyte. Diese Speichermenge erhöht auch den Aufwand eines Forensikers der persistente Speicher untersuchen muss. Beim Arbeitsspeicher hingegen, hält sich die zu Untersuchende Menge stark an Grenzen.</i></p>
+<p><i>Heutzutage bewegen sich selbst einfache Benutzer in Speichergrössen von über 1 Terabyte. Diese Speichermenge erhöht auch den Aufwand eines Forensikers, der persistente Speicher untersuchen muss. Beim Arbeitsspeicher hingegen, hält sich die zu untersuchende Menge stark in Grenzen.</i></p>
 
 <summary>Laufende Aktivitäten</summary>
   <p><i>Zusätzlich beinhaltet der flüchtige Speicher Informationen über aktive Prozesse und Netzwerkverbindungen.</i></p>
 
 <summary>Anti-Forensik umgehen</summary>
-  <p><i>Weiter könnten Passwörter die zur Entschlüsselung eines persistenten Speichers benötigt werden, aus dem Arbeitsspeicher extrahiert und so Zugang zu mehr Beweisen erlangt werden.</i></p>
+  <p><i>Weiter könnten Passwörter, die zur Entschlüsselung eines persistenten Speichers benötigt werden, aus dem Arbeitsspeicher extrahiert und so Zugang zu mehr Beweisen erlangt werden.</i></p>
 
 <summary>Temporärer Code</summary>
   <p><i>Schadcode der nur im Arbeitsspeicher geschrieben wird, kann so entdeckt und untersucht werden.</i></p>
@@ -48,23 +48,68 @@ Einige wichtige Punkte, die für die Arbeitsspeicheruntersuchung sprechen:
 
 ## Warnung
 
-Beim herunterladen so wie auch beim untersuchen vom infizierten Abbild, könnte sich das eigene System infizieren.
+Beim Herunterladen so wie auch beim Untersuchen des infizierten Abbildes, könnte sich das eigene System infizieren.
 Daher wird eine virtuelle Umgebung empfohlen und diese sollte nicht im Zusammenhang mit privaten Daten stehen.
 Untersuche infizierte Abbilder nie in einer sensiblen Netzwerkumgebung, wie z.B bei der Arbeit oder in der Schule.
-Solche Untersuchungen müssen genehmigt werden und sollten unter einhaltung aller Sicherheitsmassnahmen durchgeführt werden.
-Bitte __respektiere__ die __Privatsphäre__ so wie auch das __Sicherheitsbedürfnis__ von Anderen.
+Solche Untersuchungen müssen genehmigt werden und sollten unter Einhaltung aller Sicherheitsmassnahmen durchgeführt werden.
+Bitte __respektiere__ die __Privatsphäre__ sowie auch das __Sicherheitsbedürfnis__ von Anderen.
 
 ## Vorbereitungen
 
-{% include Vorbereitungen.html %}
 
-{% include Abbild.html %}
+<summary>Virtuelle Umgebung & Rekall installieren</summary>
+<ol>
+  <li><summary><code>pacman -S python-virtualenv</code></summary>
+</li>
+<li><summary><code>virtualenv -p python2 /tmp/MyEnv</code></summary>
+<p>Ausgabe bei Erfolg:</p>
+<textarea style="resize:none" rows="4" cols="55" readonly>Running virtualenv with interpreter /usr/bin/python2
+New python executable in /tmp/MyEnv/bin/python2
+Also creating executable in /tmp/MyEnv/bin/python
+    Installing setuptools, pip, wheel...done.</textarea><</li>
+    <li><code>source /tmp/MyEnv<b>/bin/activate</b></code></li>
+    <li><summary><code>pip install rekall</code></summary>
+        <p>Es könnten Probleme beim Version von Wheel, pip oder Setuptools vorkommen.</p>
+        <p><code>pip install --upgrade pip wheel setuptools</code></p>
+        <p>Sollte ein Fehler wegen der efilter Version aufkommen:</p>
+        <textarea rows="2" cols="55" style="color: red; resize:none">rekall-efilter 1.6.0 has requirement future==0.16.0, but you'll have future 0.17.1 which is incompatible.</textarea>
+        <p><code>pip install --upgrade rekall-efilter</code></p></li>
+</ol>
+<p></p>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<script>
+function cpMdHash() {
+  var copyText = document.getElementById('md5Txt').select();
+  document.execCommand("copy");
+}
+</script>
+<script>
+function cpCmd(){
+var cmdText = document.getElementById('cmdTxt').select();
+document.execCommand('copy');
+}
+</script>
+
+
+<summary>Abbild mit Stuxnet</summary>
+<a href="http://www.jonrajewski.com/data/Malware/stuxnet.vmem.zip">   Abbild als Zip herunterladen</a>
+    <p>Das Abbild stellt einen infizierten WindowsXP Rechner dar. 
+        Bitte überprüfe, ob es sich beim heruntergeladenen File wirklich um das angegebene Abbild handelt! </p>
+        
+    <p>MD5Hash:</p><textarea id="md5Txt" readonly rows="2" cols="35">8f630be089e791cc23571ce51c73df0c</textarea>    <button class="btn" onclick="cpMdHash()"><i class="fa fa-clipboard"></i></button><p>Befehl:</p>
+    
+    <textarea id="cmdTxt" readonly rows="2" cols="65">echo "8f630be089e791cc23571ce51c73df0c" stuxnet.vmem.zip | md5sum -c -</textarea>
+    <button class="btn" onclick="cpCmd()"><i class="fa fa-clipboard"></i></button>
+<p></p>
 
 ## Mit der Untersuchung beginnen
 
 Ab diesem Punkt können wir mit der eigentlichen Arbeit beginnen.
-Die Arbeit mit rekall (oder Volatility) beim untersuchen von Arbeitsspeicherabbildern, erinnert schon fast an einer Dedektivarbeit.
-So gesehen, haben wir ein Tatort *(das Abbild)*, unsere Werkzeuge *(rekall)* und brauchen jetzt Verdächtige.
+Die Arbeit mit rekall (oder Volatility) beim Untersuchen von Arbeitsspeicherabbildern, erinnert schon fast an eine Detektivarbeit.
+So gesehen, haben wir einen Tatort *(das Abbild)*, unsere Werkzeuge *(rekall)* und brauchen jetzt Verdächtige.
 Fangen wir mit der Arbeit an, indem wir rekall im interaktiven Modus starten und dazu das Abbild laden.
 
 {% highlight bash %}
@@ -117,31 +162,30 @@ stuxnet.vmem 22:30:00> pstree
 ### Verdächtige Prozesse
 
 Um aus der pstree-Ausgabe vernünftig Indizien zu sammeln, benötigt man Erfahrung und Wissen über die Betriebssysteme die man untersucht.
-Was hier schon für viele erfahrene XP nutzer ins Auge sticht: "lsass.exe" kommt 3x vor obwohl dieser Prozess eigentlich nur einmal vorkommen sollte.
-Diese Beobachtung zu grunde liegend, nehmen wir die Prozesse 680, 868 und 1928 genauer unter die Lupe.
+Was hier schon für viele erfahrene XP-Nutzer ins Auge sticht: "lsass.exe" kommt 3x vor, obwohl dieser Prozess eigentlich nur einmal vorkommen sollte.
+Dieser Beobachtung zu Grunde liegend, nehmen wir die Prozesse 680, 868 und 1928 genauer unter die Lupe.
 Zurzeit sind alle 3 Prozesse gleichermassen verdächtigt.
-Wobei bei Prozess 680 der Erstelldatum für dessen validität spricht.
-Da das Datum den, der anderen SYSTEM-Prozessen gleicht.
+Wobei bei Prozess 680 das Erstelldatum für dessen Validität spricht, da das Datum den, der anderen SYSTEM-Prozessen gleicht.
 
 #### WindowsXP Standardprozesse
 
-Hier könnte es hilfreich sein das Gedächnis aufzufrischen oder für welche die nie grossartig an einem XP Rechner gesessen haben, sich eine Liste von den Standartprozessen zur seite zu legen.
+Hier könnte es hilfreich sein das Gedächtnis aufzufrischen, oder für welche, die nie grossartig an einem XP Rechner gesessen haben, sich eine Liste von den Standardprozessen zur Seite zu legen.
 Von der Uni-Regensburg, ist online eine dokumentierte Liste über die Standardprozesse von WinXP zu finden.
 {% include winxplist.html %}
 
 ### Optionen evaluieren
 
 Unter diesen 3 "lsass.exe" Prozessen, müsste einer valid und somit sauber sein, während 2 womöglich Schadcode beinhalten.
-Doch wie wollen wir das nun herausfinde? Um den 2 gefälschten Prozessen auf die Spur zu kommen, haben wir ein breites Spektrum an Ansätzen und Möglichkeiten.
+Doch wie wollen wir das nun herausfinden? Um den 2 gefälschten Prozessen auf die Spur zu kommen, haben wir ein breites Spektrum an Ansätzen und Möglichkeiten.
 Auch hier, um einen Anhaltspunkt für das weitere Vorgehen zu finden, brauchen wir mehr Informationen.
 Eine einfache __Google-Suche__ mit den Worten "lsass.exe windows xp" könnte uns interessante Informationen aufzeigen.
 {% include prozessinformationen.html %}
 
 Daraus können wir folgende Fakten ziehen:
 * lsass.exe liegt im Ordner "C:\Windows\System32"
-* lsass.exe steht auf SYSTEM level und hat somit sehr hohe Rechte/Priorität
+* lsass.exe steht auf SYSTEM Level und hat somit sehr hohe Rechte/Priorität
 * lsass.exe ist ein lokaler Sicherheit-Authentifizierungsserver.
-  Funktionen die bei einem Trojaner typisch sind (Kontrolle von Fenstern oder das Bewegen der Maus, oder Tastaturschläge) gehören nicht zu seinen Funktionsliste
+  Funktionen, die bei einem Trojaner typisch sind (Kontrolle von Fenstern oder das Bewegen der Maus oder Tastaturschläge) gehören nicht zu seiner Funktionsliste
 
 ### Rechtestufen
 
@@ -171,7 +215,7 @@ stuxnet.vmem 22:42:00> tokens proc_regex=('lsass.exe')
 
 An dieser Ausgabe ist zu erkennen, dass alle 3 Verdächtigen die gleiche Berechtigung besitzen.
 Somit konnte kein valider Prozess herauskristallisiert werden.
-Es gibt noch die Möglichkeit um die Priorität zu überprüfen.
+Es gibt noch die Möglichkeit, die Priorität zu überprüfen.
 Denn der legitime Prozess sollte dank seinem SYSTEM-Level auch entsprechend höhere Priorität besitzen.
 Tatsächlich besitzen bei Windows "normale" Anwendungen max. ein Prioritätlevel von 8, 
 wohingegen SYSTEM-Anwendungen ein Level von 9 besitzen.
@@ -180,7 +224,7 @@ wohingegen SYSTEM-Anwendungen ein Level von 9 besitzen.
 stuxnet.vmem 22:48:00> SELECT _EPROCESS.name, _EPROCESS.pid, _EPROCESS.Pcb.BasePriority FROM pslist() WHERE regex_proc("lsass.exe", _EPROCESS.name)
 {% endhighlight %}
 
-Wie bei einer SQL Abfrage wird mit __SELECT__ bestimmt welche Spalten angefragt werden. In unserem Fall __name__, __die ID__ und die __Prioritätlevel__. Mit __FROM__ wird die Informationsquelle bestimmt, in dem Fall die Werte von pslist().
+Wie bei einer SQL Abfrage wird mit __SELECT__ bestimmt, welche Spalten angefragt werden. In unserem Fall __name__, __die ID__ und das __Prioritätlevel__. Mit __FROM__ wird die Informationsquelle bestimmt, in diesem Fall die Werte von pslist().
 pslist() ist ähnlich dem pstree().
 Weiter wird die Ausgabe von pslist() durch __WHERE__ gefiltert, nur Daten die als name "lsass.exe" tragen werden berücksichtigt.
 
@@ -190,18 +234,18 @@ Weiter wird die Ausgabe von pslist() durch __WHERE__ gefiltert, nur Daten die al
 |868|lsass.exe|8|
 |1928|lsass.exe|8|
 
-Durch diese Ausgabe, sehen wir dass die Priorität von Prozess 680 höher liegt, als die der anderen beiden Prozesse.
+Durch diese Ausgabe sehen wir, dass die Priorität von Prozess 680 höher liegt, als die der anderen beiden Prozesse.
 Wir können bereits jetzt davon ausgehen, dass es sich beim Prozess 680 um das valide lsass.exe handelt.
 Dafür sprechen 2 Punkte:
-* Das Erstelldatum dass ein Jahr vor den anderen 2 Prozessen liegt und mit anderen legitimen SYSTEM-Prozessen gleich liegt.
-* Die höhere Priorität die durch den SYSTEM-Level kommt.
+* Das Erstelldatum, das ein Jahr vor den anderen 2 Prozessen liegt und mit anderen legitimen SYSTEM-Prozessen gleich liegt.
+* Die höhere Priorität, die durch das SYSTEM-Level begründet wird.
 
-Es liegt nun auf der Hand welches der 3 Prozesse valid ist und welche 2 verdächtigt werden Schadcode zu beinhalten.
-Wir untersuchen dennoch weiter die Prozesse. Evtl können wir so den Handlungsradius bestimmen.
-Wichtig für die Handlungsmöglichkeiten eines Prozesses, sind die Funktionen die es verwendet/besitzt.
+Es liegt nun auf der Hand, welcher der 3 Prozesse valid ist und welche 2 verdächtigt werden, Schadcode zu beinhalten.
+Wir untersuchen dennoch weiter die Prozesse. Evtl. können wir so den Handlungsradius bestimmen.
+Wichtig für die Handlungsmöglichkeiten eines Prozesses, sind die Funktionen, die er verwendet/besitzt.
 Viele Funktionen finden sich in DLL-Dateien. Das sind ganze Bibliotheken von Funktionen.
-Auch die Framework-Funktionen die Windowseigene Alogrithmen beinhalten, stellen diese über DLLs bereit.
-Daher ist es für einen Forensiker interessant zu wissen auf welche DLLs ein Prozess zugreift, dadurch lässt sich der Handlungsspielraum eingrenzen.
+Auch die Framework-Funktionen, die windowseigene Algorithmen beinhalten, stellen diese über DLLs bereit.
+Daher ist es für einen Forensiker interessant zu wissen, auf welche DLLs ein Prozess zugreift, dadurch lässt sich der Handlungsspielraum eingrenzen.
 
 ### Dll Anbindung
 
@@ -255,15 +299,15 @@ Service Pack 3
 
 +21 weitere...
 
-Der legitime Prozess hat viel mehr DLLs eingebunden als die 2 ilegitimen Prozesse.
+Der legitime Prozess hat viel mehr DLLs eingebunden als die 2 illegitimen Prozesse.
 Das überrascht nicht, da ein Programmierer von Schadcode, zwar evtl. Funktionen von der Framework benötigt, aber nicht alle.
 Wozu den Schadcode unnötig aufblähen?
 Natürlich ist das nur eine Interpretation und kann höchstens als Indiz und nicht als Beweis gewertet werden.
 Was wir wissen müssen, DLL-Anbindungen können absichtlich verschleiert werden.
-Ein Weg dies zu tun ist das unlinken von DLLs aus der PEB. {% include PEB.html %}
+Ein Weg dies zu tun, ist das unlinken von DLLs aus der PEB. {% include PEB.html %}
 
-Mit "ldrmodules" untersuchen wir die ldr Einträge, dabei handelt es sich um einen Zeiger, der auf eine <a href="https://docs.microsoft.com/en-us/windows/desktop/api/winternl/ns-winternl-_peb_ldr_data">Struktur</a> zeigt, in dem Informationen über geladene DLLs zu finden sind.
-Dort wird in der Antiforensik angesetzt um DLLs vor einer Untersuchung zu verstecken.
+Mit "ldrmodules" untersuchen wir die ldr Einträge. Dabei handelt es sich um einen Zeiger, der auf eine <a href="https://docs.microsoft.com/en-us/windows/desktop/api/winternl/ns-winternl-_peb_ldr_data">Struktur</a> zeigt, in dem Informationen über geladene DLLs zu finden sind.
+Dort wird in der Antiforensik angesetzt, um DLLs vor einer Untersuchung zu verstecken.
 
 {% highlight bash %}
 stuxnet.vmem 22:59:00> ldrmodules[680,868,1928]
@@ -385,26 +429,26 @@ __0x81c47c00 lsass.exe  1928__
 |0x77b20000|*True*|*True*|*True*|\WINDOWS\system32\msasn1.dll|
 
 
-Durch diese Ausgaben erkennen wir dass unsere 2 verdächtigen mehrere DLLs unverlinkt haben.
-Hier noch ein Bild wie die "unlinking DLLs" sich vorgestellt werden kann:
+Durch diese Ausgaben erkennen wir, dass unsere 2 verdächtigen mehrere DLLs unverlinkt haben.
+Hier noch ein Bild wie man sich die "unlinking DLLs" vorstellen kann:
 
 <a href="../assets/img/hideDll.png" ><img width="300" height="214" src="../assets/img/hideDll.png"/></a>
 
 ### Scannen von Prozessen
 
-Ein Scan mit der Funktion "malfind" könnte den Verdacht bestätigen. Denn malfind untersucht Prozesse nach eingeschleusten Code. 
+Ein Scan mit der Funktion "malfind" könnte den Verdacht bestätigen. Denn malfind untersucht Prozesse auf eingeschleusten Code. 
 
 {% highlight bash %}
 stuxnet.vmem 23:14:00> malfind[680,868,1928]
 {% endhighlight %}
 
-Die Ausgabe ist extrem Lange und ich bin zurzeit noch nicht in der Lage alles dazu zu erklären. Ein wichtiger Punkt ist die "MZ" Marke, da es sich dabei um ausführbaren Code handelt.
+Die Ausgabe ist extrem lange und ich bin zurzeit noch nicht in der Lage alles dazu zu erklären. Ein wichtiger Punkt ist die "MZ" Marke, da es sich dabei um ausführbaren Code handelt.
 
 <a href="../assets/img/mz.png" ><img width="300" height="214" src="../assets/img/mz.png"/></a>
 
 ### Prozesse Extrahieren
 
-Die Prozesse können zur weiteren Untersuchungen (Disassembly) aus dem Abbild extrahiert werden.
+Die Prozesse können zu weiteren Untersuchungen (Disassembly) aus dem Abbild extrahiert werden.
 Dazu:
 
 {% highlight bash %}
@@ -414,10 +458,9 @@ stuxnet.vmem 23:55:00> procdump[680,868,1928],dump_dir="./out"
 ### Funktionszugriffe einsehen
 
 Die nun Extrahierten .exe Dateien, können mit Tools wie __strings__ untersucht werden.
-Wie bereits erwähnt sollten die schädlichen 2 Prozesse, Funktionen aufrufen die atypisch für Authentifizierungsserver sind.
-Dafür aber Indizien aufgeben für einen Schädling. Besonders eine RAT *(Remote Access Tool)* wird vermutbar sein,
-da diese Art von Viren viel Kontrolle benötigen, darunter Kontrolle über Fenster, Tasteneingaben, Mausführung, Dokumente, Verzeichnisse ect.
-Dazu müsste ein neuer Terminal geöffnet werden und folgender Befehl eingegeben werden:
+Wie bereits erwähnt, sollten die schädlichen 2 Prozesse, Funktionen aufrufen, die atypisch für Authentifizierungsserver sind, dafür aber Indizien aufgeben für einen Schädling. Besonders eine RAT *(Remote Access Tool)* wird zu vermuten sein,
+da diese Art von Viren viel Kontrolle benötigen, darunter Kontrolle über Fenster, Tasteneingaben, Mausführung, Dokumente, Verzeichnisse etc.
+Dazu müsste ein neuer Terminal geöffnet und folgender Befehl eingegeben werden:
 
 {% highlight bash %}
 strings --print-file-name --data --encoding=s executable.lsass.exe*  | grep --perl-regexp "ZwMapViewOfSection|ZwCreateSection|ZwOpenFile|ZwClose|ZwQueryAttributesFile|ZwQuerySection"
@@ -439,11 +482,11 @@ executable.lsass.exe_868.exe: ZwQuerySection
 {% endhighlight %}
 
 Prozess 680 fehlt in der Ausgabe. Ein Authentifizierungsserver würde diese Funktionen nicht benötigen.
-Alle Untersuchungschritte weisen unmisverständlich darauf hin, dass Prozess 680 der legitime originale "lsass.exe" ist.
+Alle Untersuchungsschritte weisen unmissverständlich darauf hin, dass Prozess 680 der legitime originale "lsass.exe" ist.
 
 ### Assembly-Code analysieren
 
-Ab hier bräuchte man erweiterte Assembly-Wissen, über die ich zurzeit nicht verfüge.
+Ab hier bräuchte man erweitertes Assembly-Wissen, über das ich zurzeit nicht verfüge.
 Daher endet dieser Blog fürs erste an diesem Punkt.
 
 
@@ -457,12 +500,12 @@ Da die Begeisterung mich nicht loslässt, wird dieser Blog weiterhin ausgebaut.
 
 __Stringsvergleich automatisieren__
 <details><summary>[Ausklappen]</summary>
-Hier noch ein kleiner Script der die Ausgaben von Strings vergleicht.
-(Es wird noch ein Script folgen für das suchen von Verdächtigen Prozessen)
+Hier noch ein kleines Script der die Ausgaben von Strings vergleicht.
+(Es wird noch ein Script folgen für die Suche von verdächtigen Prozessen)
 
 Funktionsweise:
 Es handelt sich hier um ein Python-Script. Als Argumente werden 2 Dateien angegeben.
-Das erste stellt das Original dar und das zweite wird mit dem ersten verglichen.
+Die erste stellt das Original dar und die zweite wird mit der ersten verglichen.
 
 {% highlight bash %}
 python script.py executable.lsass.exe_680.exe executable.lsass.exe_868.exe
@@ -472,7 +515,7 @@ __Ausgabe:__
 
 <a href="../assets/img/scriptausgabe.png" alt="Vergleichen mit dem Python-Skript"><img width="300" height="214" src="../assets/img/scriptausgabe.png"/></a>
 
-Die Zeilen mit [+] bedeuten dass diese Strings in beiden Dateien vorkommen. 
+Die Zeilen mit [+] bedeuten, dass diese Strings in beiden Dateien vorkommen. 
 Die mit [!] hingegen, dass sie bei der ersten Datei nicht vorkommen.
 
 
