@@ -25,17 +25,26 @@ tr:nth-child(even) {
 }
 </style>
 
-*Dieser Blogeintrag enstand durch eine Zusammenarbeit von Fatos Shala und Patrick Rüfenacht, im schulischem Umfeld bei der TEKO Olten.*
-
 ## Was ist *Memory Forensik*?
 
 *"Memory Forensik" (Arbeitsspeicheruntersuchung)* beschreibt die __Sicherung__ des Arbeitsspeichers in Form eines Abbildes 
-und das __Untersuchen__ des Abbildes auf ein mögliches Sicherheitsvorfalls.
-Bei all den Vorteilen die eine Arbeitsspeicheruntersuchung gegenüber der traditionellen Untersuchung von persistentem Speicher bietet, 
+und das __Untersuchen__ des Abbildes auf einen möglichen Sicherheitsvorfall.
+Bei all den Vorteilen, die eine Arbeitsspeicheruntersuchung gegenüber der traditionellen Untersuchung von persistentem Speicher bietet, 
 ist es keine Überraschung, dass es heutzutage zu den ersten Schritten bei einem Sicherheitsvorfall zählt.
-Einige wichtige Punkte die für die Arbeitsspeicheruntersuchung sprechen:
+Einige wichtige Punkte, die für die Arbeitsspeicheruntersuchung sprechen:
 
-{% include Vorteile.html %}
+<summary>Kleiner Angriffsvektor</summary>
+<p><i>Heutzutage bewegen sich selbst einfache Benutze in Speichergrössen von über 1 Terabyte. Diese Speichermenge erhöht auch den Aufwand eines Forensikers der persistente Speicher untersuchen muss. Beim Arbeitsspeicher hingegen, hält sich die zu Untersuchende Menge stark an Grenzen.</i></p>
+
+<summary>Laufende Aktivitäten</summary>
+  <p><i>Zusätzlich beinhaltet der flüchtige Speicher Informationen über aktive Prozesse und Netzwerkverbindungen.</i></p>
+
+<summary>Anti-Forensik umgehen</summary>
+  <p><i>Weiter könnten Passwörter die zur Entschlüsselung eines persistenten Speichers benötigt werden, aus dem Arbeitsspeicher extrahiert und so Zugang zu mehr Beweisen erlangt werden.</i></p>
+
+<summary>Temporärer Code</summary>
+  <p><i>Schadcode der nur im Arbeitsspeicher geschrieben wird, kann so entdeckt und untersucht werden.</i></p>
+<p></p>
 
 ## Warnung
 
