@@ -57,7 +57,7 @@ Bitte __respektiere__ die __Privatsphäre__ sowie auch das __Sicherheitsbedürfn
 ## Vorbereitungen
 
 
-<summary>Virtuelle Umgebung & Rekall installieren</summary>
+__Virtuelle Umgebung & Rekall installieren__
 <ol>
   <li><summary><code>pacman -S python-virtualenv</code></summary>
 </li>
@@ -66,7 +66,7 @@ Bitte __respektiere__ die __Privatsphäre__ sowie auch das __Sicherheitsbedürfn
 <textarea style="resize:none" rows="4" cols="55" readonly>Running virtualenv with interpreter /usr/bin/python2
 New python executable in /tmp/MyEnv/bin/python2
 Also creating executable in /tmp/MyEnv/bin/python
-    Installing setuptools, pip, wheel...done.</textarea><</li>
+    Installing setuptools, pip, wheel...done.</textarea></li>
     <li><code>source /tmp/MyEnv<b>/bin/activate</b></code></li>
     <li><summary><code>pip install rekall</code></summary>
         <p>Es könnten Probleme beim Version von Wheel, pip oder Setuptools vorkommen.</p>
@@ -94,10 +94,11 @@ document.execCommand('copy');
 </script>
 
 
-<summary>Abbild mit Stuxnet</summary>
+__Abbild mit Stuxnet__
 <a href="http://www.jonrajewski.com/data/Malware/stuxnet.vmem.zip">   Abbild als Zip herunterladen</a>
-    <p>Das Abbild stellt einen infizierten WindowsXP Rechner dar. 
-        Bitte überprüfe, ob es sich beim heruntergeladenen File wirklich um das angegebene Abbild handelt! </p>
+
+Das Abbild stellt einen infizierten WindowsXP Rechner dar.
+Bitte überprüfe, ob es sich beim heruntergeladenen File wirklich um das angegebene Abbild handelt!
         
     <p>MD5Hash:</p><textarea id="md5Txt" readonly rows="2" cols="35">8f630be089e791cc23571ce51c73df0c</textarea>    <button class="btn" onclick="cpMdHash()"><i class="fa fa-clipboard"></i></button><p>Befehl:</p>
     
